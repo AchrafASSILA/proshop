@@ -1,5 +1,10 @@
 <?php require_once './includes/header.php' ?>
+<?php require './autoload.classes.php' ?>
+<?php
+$obj = new CategoryView();
+$categories = $obj->getAllCategories();
 
+?>
 <header class="section-header">
     <nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
         <div class="container">
@@ -38,7 +43,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-2 col-md-3 col-6">
                     <a href="./" class="brand-wrap">
-                        <img class="logo" src="./images/logo.png">
+                        <img class="logo" src="./public/images/logo.png">
                     </a> <!-- brand-wrap.// -->
                 </div>
                 <div class="col-lg col-sm col-md col-6 flex-grow-0">
@@ -47,12 +52,9 @@
                             <i class="fa fa-bars"></i> All category
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Machinery / Mechanical Parts / Tools </a>
-                            <a class="dropdown-item" href="#">Consumer Electronics / Home Appliances </a>
-                            <a class="dropdown-item" href="#">Auto / Transportation</a>
-                            <a class="dropdown-item" href="#">Apparel / Textiles / Timepieces </a>
-                            <a class="dropdown-item" href="#">Home & Garden / Construction / Lights </a>
-                            <a class="dropdown-item" href="#">Beauty & Personal Care / Health </a>
+                            <?php foreach ($categories as $category) : ?>
+                                <a class="dropdown-item" href="store.php?category=<?php echo $category->name ?>"><?php echo $category->name ?> </a>
+                            <?php endforeach; ?>
                         </div>
                     </div> <!-- category-wrap.// -->
                 </div> <!-- col.// -->
@@ -119,17 +121,14 @@
                                 <h6 class="title">Categories</h6>
                             </a>
                         </header>
-                        <div class="filter-content collapse show" id="collapse_1" style="">
+                        <div class="filter-content collapse show" id="collapse_1">
                             <div class="card-body">
 
                                 <ul class="list-menu">
-                                    <li><a href="#">People </a></li>
-                                    <li><a href="#">Watches </a></li>
-                                    <li><a href="#">Cinema </a></li>
-                                    <li><a href="#">Clothes </a></li>
-                                    <li><a href="#">Home items </a></li>
-                                    <li><a href="#">Animals</a></li>
-                                    <li><a href="#">People </a></li>
+                                    <?php foreach ($categories as $category) : ?>
+
+                                        <li><a href="store.php?category<?= $category->name ?>"><?= $category->name ?> </a></li>
+                                    <?php endforeach; ?>
                                 </ul>
 
                             </div> <!-- card-body.// -->
@@ -142,7 +141,7 @@
                                 <h6 class="title">Sizes </h6>
                             </a>
                         </header>
-                        <div class="filter-content collapse show" id="collapse_4" style="">
+                        <div class="filter-content collapse show" id="collapse_4">
                             <div class="card-body">
                                 <label class="checkbox-btn">
                                     <input type="checkbox">
@@ -174,7 +173,7 @@
                                 <h6 class="title">Price range </h6>
                             </a>
                         </header>
-                        <div class="filter-content collapse show" id="collapse_3" style="">
+                        <div class="filter-content collapse show" id="collapse_3">
                             <div class="card-body">
 
                                 <div class="form-row">
