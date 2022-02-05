@@ -1,4 +1,4 @@
 <?php
 spl_autoload_register(function ($class) {
-    require 'classes/' . $class . '.class.php';
+    require __DIR__ . '//classes/' . $class . '.class.php';
 });

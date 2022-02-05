@@ -58,7 +58,7 @@
             <div class="cardHeader">
                 <h2>Recent Developers</h2>
                 <div class="links">
-                    <a href="./create-product.php" class="btn">add developer</a>
+                    <a href="./create-product.php" class="btn">add product</a>
                     <a href="./create-category.php" class="btn">add category</a>
                 </div>
             </div>
@@ -66,66 +66,102 @@
                 <thead>
                     <tr>
                         <td>image</td>
-                        <td>FirstName</td>
-                        <td>LastName</td>
-                        <td>Email</td>
-                        <td>Location</td>
-                        <td>Password</td>
-                        <td>Github</td>
-                        <td>Linkedin</td>
-                        <td>Bio</td>
-                        <td>Created</td>
+                        <td>name</td>
+                        <td>price</td>
+                        <td>stock</td>
+                        <td>category</td>
+                        <td>created at</td>
+                        <td>modified at</td>
+                        <td>operations</td>
+
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Assila</td>
-                        <td>Achraf</td>
-                        <td>morroco,Casablanca</td>
-                        <td>achraf@gmail.com</td>
+                        <td><img src="" alt="hy"></td>
+                        <td>name</td>
+                        <td>99.9 $</td>
+                        <td>20</td>
+                        <td>name</td>
+                        <td>date</td>
+                        <td>date</td>
+                        <td><a href="#">Edit</a>
+                            <a href="#">Delete</a>
+                        </td>
                     </tr>
                     <tr>
-                        <td>Assila</td>
-                        <td>Achraf</td>
-                        <td>morroco,Casablanca</td>
-                        <td>achraf@gmail.com</td>
+                        <td><img src="" alt="hy"></td>
+                        <td>name</td>
+                        <td>99.9 $</td>
+                        <td>20</td>
+                        <td>name</td>
+                        <td>date</td>
+                        <td>date</td>
+                        <td><a href="#">Edit</a>
+                            <a href="#">Delete</a>
+                        </td>
                     </tr>
                     <tr>
-                        <td>Assila</td>
-                        <td>Achraf</td>
-                        <td>morroco,Casablanca</td>
-                        <td>achraf@gmail.com</td>
+                        <td><img src="" alt="hy"></td>
+                        <td>name</td>
+                        <td>99.9 $</td>
+                        <td>20</td>
+                        <td>name</td>
+                        <td>date</td>
+                        <td>date</td>
+                        <td><a href="#">Edit</a>
+                            <a href="#">Delete</a>
+                        </td>
                     </tr>
                     <tr>
-                        <td>Assila</td>
-                        <td>Achraf</td>
-                        <td>morroco,Casablanca</td>
-                        <td>achraf@gmail.com</td>
+                        <td><img src="" alt="hy"></td>
+                        <td>name</td>
+                        <td>99.9 $</td>
+                        <td>20</td>
+                        <td>name</td>
+                        <td>date</td>
+                        <td>date</td>
+                        <td><a href="#">Edit</a>
+                            <a href="#">Delete</a>
+                        </td>
                     </tr>
                     <tr>
-                        <td>Assila</td>
-                        <td>Achraf</td>
-                        <td>morroco,Casablanca</td>
-                        <td>achraf@gmail.com</td>
+                        <td><img src="" alt="hy"></td>
+                        <td>name</td>
+                        <td>99.9 $</td>
+                        <td>20</td>
+                        <td>name</td>
+                        <td>date</td>
+                        <td>date</td>
+                        <td><a href="#">Edit</a>
+                            <a href="#">Delete</a>
+                        </td>
                     </tr>
                     <tr>
-                        <td>Assila</td>
-                        <td>Achraf</td>
-                        <td>morroco,Casablanca</td>
-                        <td>achraf@gmail.com</td>
+                        <td><img src="" alt="hy"></td>
+                        <td>name</td>
+                        <td>99.9 $</td>
+                        <td>20</td>
+                        <td>name</td>
+                        <td>date</td>
+                        <td>date</td>
+                        <td><a href="#">Edit</a>
+                            <a href="#">Delete</a>
+                        </td>
                     </tr>
                     <tr>
-                        <td>Assila</td>
-                        <td>Achraf</td>
-                        <td>morroco,Casablanca</td>
-                        <td>achraf@gmail.com</td>
+                        <td><img src="" alt="hy"></td>
+                        <td>name</td>
+                        <td>99.9 $</td>
+                        <td>20</td>
+                        <td>name</td>
+                        <td>date</td>
+                        <td>date</td>
+                        <td><a href="#">Edit</a>
+                            <a href="#">Delete</a>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>Assila</td>
-                        <td>Achraf</td>
-                        <td>morroco,Casablanca</td>
-                        <td>achraf@gmail.com</td>
-                    </tr>
+
                 </tbody>
             </table>
         </div>

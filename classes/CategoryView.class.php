@@ -5,8 +5,7 @@
 
 
 
-require_once basename(__DIR__) . '/CategoryModel.class.php';
-
+require_once __DIR__ . './CategoryModel.class.php';
 
 class CategoryView extends CategoryModyl
 {

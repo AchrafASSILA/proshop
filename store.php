@@ -1,8 +1,21 @@
 <?php require_once './includes/header.php' ?>
 <?php require './autoload.classes.php' ?>
+<!-- instanciate from category view -->
+<?php $cat = new CategoryView(); ?>
+<!-- get all categories from category view  -->
+<?php $categories = $cat->getAllCategories(); ?>
+<!-- get products  -->
+<?php $prod = new ProductView() ?>
+<?php $products = $prod->getAllProducts() ?>
+<!-- displaying products and filtr by category  -->
 <?php
-$obj = new CategoryView();
-$categories = $obj->getAllCategories();
+// if (isset($_GET['category']) && !empty($_GET['category'])) {
+//     $categoryName = $_GET['category'];
+//     $category = $cat->getCategoryByName($categoryName);
+//     echo $category->id;
+// } else {
+//     echo "hyhy";
+// }
 
 ?>
 <header class="section-header">
@@ -127,14 +140,14 @@ $categories = $obj->getAllCategories();
                                 <ul class="list-menu">
                                     <?php foreach ($categories as $category) : ?>
 
-                                        <li><a href="store.php?category<?= $category->name ?>"><?= $category->name ?> </a></li>
+                                        <li><a href="store.php?category=<?= $category->name ?>"><?= $category->name ?> </a></li>
                                     <?php endforeach; ?>
                                 </ul>
 
                             </div> <!-- card-body.// -->
                         </div>
                     </article> <!-- filter-group  .// -->
-                    <article class="filter-group">
+                    <!-- <article class="filter-group">
                         <header class="card-header">
                             <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
                                 <i class="icon-control fa fa-chevron-down"></i>
@@ -162,9 +175,9 @@ $categories = $obj->getAllCategories();
                                     <input type="checkbox">
                                     <span class="btn btn-light"> XXL </span>
                                 </label>
-                            </div><!-- card-body.// -->
+                            </div> card-body.//
                         </div>
-                    </article> <!-- filter-group .// -->
+                    </article> filter-group .// -->
 
                     <article class="filter-group">
                         <header class="card-header">
@@ -221,151 +234,27 @@ $categories = $obj->getAllCategories();
                 </header><!-- sect-heading -->
 
                 <div class="row">
-                    <div class="col-md-4">
-                        <figure class="card card-product-grid">
-                            <div class="img-wrap">
+                    <?php foreach ($products as $product) : ?>
+                        <div class="col-md-4">
+                            <figure class="card card-product-grid">
+                                <div class="img-wrap">
 
-                                <img src="images/items/1.jpg">
+                                    <img src="<?php echo $product->image ?>" alt="image">
 
-                            </div> <!-- img-wrap.// -->
-                            <figcaption class="info-wrap">
-                                <div class="fix-height">
-                                    <a href="./product-detail.html" class="title">Great item name goes here</a>
-                                    <div class="price-wrap mt-2">
-                                        <span class="price">$1280</span>
-                                        <del class="price-old">$1980</del>
-                                    </div> <!-- price-wrap.// -->
-                                </div>
-                                <a href="#" class="btn btn-block btn-success">Added to cart </a>
-                            </figcaption>
-                        </figure>
-                    </div> <!-- col.// -->
-
-                    <div class="col-md-4">
-                        <figure class="card card-product-grid">
-                            <div class="img-wrap">
-                                <img src="images/items/2.jpg">
-
-                            </div> <!-- img-wrap.// -->
-                            <figcaption class="info-wrap">
-                                <div class="fix-height">
-                                    <a href="./product-detail.html" class="title">Product name goes here just for demo item</a>
-                                    <div class="price-wrap mt-2">
-                                        <span class="price">$1280</span>
-                                    </div> <!-- price-wrap.// -->
-                                </div>
-                                <a href="#" class="btn btn-block btn-primary">Add to cart </a>
-                            </figcaption>
-                        </figure>
-                    </div> <!-- col.// -->
-
-                    <div class="col-md-4">
-                        <figure class="card card-product-grid">
-                            <div class="img-wrap">
-                                <img src="images/items/3.jpg">
-
-                            </div> <!-- img-wrap.// -->
-                            <figcaption class="info-wrap">
-                                <div class="fix-height">
-                                    <a href="./product-detail.html" class="title">Product name goes here just for demo item</a>
-                                    <div class="price-wrap mt-2">
-                                        <span class="price">$1280</span>
-                                    </div> <!-- price-wrap.// -->
-                                </div>
-                                <a href="#" class="btn btn-block btn-primary">Add to cart </a>
-                            </figcaption>
-                        </figure>
-                    </div> <!-- col.// -->
-
-                    <div class="col-md-4">
-                        <figure class="card card-product-grid">
-                            <div class="img-wrap">
-                                <img src="images/items/4.jpg">
-
-                            </div> <!-- img-wrap.// -->
-                            <figcaption class="info-wrap">
-                                <div class="fix-height">
-                                    <a href="./product-detail.html" class="title">Product name goes here just for demo item</a>
-                                    <div class="price-wrap mt-2">
-                                        <span class="price">$1280</span>
-                                    </div> <!-- price-wrap.// -->
-                                </div>
-                                <a href="#" class="btn btn-block btn-primary">Add to cart </a>
-                            </figcaption>
-                        </figure>
-                    </div> <!-- col.// -->
-
-                    <div class="col-md-4">
-                        <figure class="card card-product-grid">
-                            <div class="img-wrap">
-                                <img src="images/items/5.jpg">
-
-                            </div> <!-- img-wrap.// -->
-                            <figcaption class="info-wrap">
-                                <div class="fix-height">
-                                    <a href="./product-detail.html" class="title">Product name goes here just for demo item</a>
-                                    <div class="price-wrap mt-2">
-                                        <span class="price">$1280</span>
-                                    </div> <!-- price-wrap.// -->
-                                </div>
-                                <a href="#" class="btn btn-block btn-primary">Add to cart </a>
-                            </figcaption>
-                        </figure>
-                    </div> <!-- col.// -->
-
-                    <div class="col-md-4">
-                        <figure class="card card-product-grid">
-                            <div class="img-wrap">
-                                <img src="images/items/6.jpg">
-
-                            </div> <!-- img-wrap.// -->
-                            <figcaption class="info-wrap">
-                                <div class="fix-height">
-                                    <a href="./product-detail.html" class="title">Product name goes here just for demo item</a>
-                                    <div class="price-wrap mt-2">
-                                        <span class="price">$1280</span>
-                                    </div> <!-- price-wrap.// -->
-                                </div>
-                                <a href="#" class="btn btn-block btn-primary">Add to cart </a>
-                            </figcaption>
-                        </figure>
-                    </div> <!-- col.// -->
-
-                    <div class="col-md-4">
-                        <figure class="card card-product-grid">
-                            <div class="img-wrap">
-                                <img src="images/items/7.jpg">
-
-                            </div> <!-- img-wrap.// -->
-                            <figcaption class="info-wrap">
-                                <div class="fix-height">
-                                    <a href="./product-detail.html" class="title">Product name goes here just for demo item</a>
-                                    <div class="price-wrap mt-2">
-                                        <span class="price">$1280</span>
-                                    </div> <!-- price-wrap.// -->
-                                </div>
-                                <a href="#" class="btn btn-block btn-primary">Add to cart </a>
-                            </figcaption>
-                        </figure>
-                    </div> <!-- col.// -->
-
-                    <div class="col-md-4">
-                        <figure class="card card-product-grid">
-                            <div class="img-wrap">
-                                <img src="images/items/1.jpg">
-
-                            </div> <!-- img-wrap.// -->
-                            <figcaption class="info-wrap">
-                                <div class="fix-height">
-                                    <a href="./product-detail.html" class="title">Product name goes here just for demo item</a>
-                                    <div class="price-wrap mt-2">
-                                        <span class="price">$1280</span>
-                                    </div> <!-- price-wrap.// -->
-                                </div>
-                                <a href="#" class="btn btn-block btn-primary">Add to cart </a>
-                            </figcaption>
-                        </figure>
-                    </div> <!-- col.// -->
+                                </div> <!-- img-wrap.// -->
+                                <figcaption class="info-wrap">
+                                    <div class="fix-height">
+                                        <a href="./product-detail.html" class="title"><?= $product->name ?></a>
+                                        <div class="price-wrap mt-2">
+                                            <span class="price">$<?= $product->price ?></span>
+                                            <del class="price-old">$80</del>
+                                        </div> <!-- price-wrap.// -->
+                                    </div>
+                                    <a href="#" class="btn btn-block btn-primary">Add to cart </a>
+                                </figcaption>
+                            </figure>
+                        </div> <!-- col.// -->
+                    <?php endforeach; ?>
                 </div> <!-- row end.// -->
 
 
