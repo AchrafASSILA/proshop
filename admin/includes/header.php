@@ -44,12 +44,6 @@
                 </li>
                 <li>
                     <a href="#">
-                        <span class="icon"><i class="fas fa-project-diagram"></i></span>
-                        <span class="title"> Products</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
                         <span class="icon"><i class="far fa-comment"></i></span>
                         <span class="title"> Orders</span>
                     </a>

@@ -12,4 +12,9 @@ class ProductView extends ProductModyl
     {
         return $this->getProducts();
     }
+
+    public function getProductsCategory($category)
+    {
+        return $this->getProductsByCategory($category);
+    }
 }

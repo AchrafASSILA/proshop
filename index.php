@@ -1,5 +1,13 @@
 <?php require_once './includes/header.php' ?>
-
+<?php require './autoload.classes.php' ?>
+<!-- instanciate from category view -->
+<?php $cat = new CategoryView(); ?>
+<!-- get all categories from category view  -->
+<?php $categories = $cat->getAllCategories(); ?>
+<!-- get products  -->
+<?php $prod = new ProductView();
+$products = $prod->getAllProducts();
+?>
 <header class="section-header">
     <nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
         <div class="container">
@@ -38,12 +46,10 @@
                             <i class="fa fa-bars"></i> All category
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Machinery / Mechanical Parts / Tools </a>
-                            <a class="dropdown-item" href="#">Consumer Electronics / Home Appliances </a>
-                            <a class="dropdown-item" href="#">Auto / Transportation</a>
-                            <a class="dropdown-item" href="#">Apparel / Textiles / Timepieces </a>
-                            <a class="dropdown-item" href="#">Home & Garden / Construction / Lights </a>
-                            <a class="dropdown-item" href="#">Beauty & Personal Care / Health </a>
+                            <a class="dropdown-item" href="store.php">all</a>
+                            <?php foreach ($categories as $category) : ?>
+                                <a class="dropdown-item" href="store.php?category=<?php echo $category->name ?>"><?php echo $category->name ?> </a>
+                            <?php endforeach; ?>
                         </div>
                     </div> <!-- category-wrap.// -->
                 </div> <!-- col.// -->
@@ -109,78 +115,17 @@
 
 
         <div class="row">
-            <div class="col-md-3">
-                <div class="card card-product-grid">
-                    <a href="./product-detail.html" class="img-wrap"> <img src="./public/images/items/1.jpg"> </a>
-                    <figcaption class="info-wrap">
-                        <a href="./product-detail.html" class="title">Just another product name</a>
-                        <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-                    </figcaption>
-                </div>
-            </div> <!-- col.// -->
-            <div class="col-md-3">
-                <div class="card card-product-grid">
-                    <a href="./product-detail.html" class="img-wrap"> <img src="./public/images/items/2.jpg"> </a>
-                    <figcaption class="info-wrap">
-                        <a href="./product-detail.html" class="title">Some item name here</a>
-                        <div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
-                    </figcaption>
-                </div>
-            </div> <!-- col.// -->
-            <div class="col-md-3">
-                <div class="card card-product-grid">
-                    <a href="./product-detail.html" class="img-wrap"> <img src="./public/images/items/3.jpg"> </a>
-                    <figcaption class="info-wrap">
-                        <a href="./product-detail.html" class="title">Great product name here</a>
-                        <div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
-                    </figcaption>
-                </div>
-            </div> <!-- col.// -->
-            <div class="col-md-3">
-                <div class="card card-product-grid">
-                    <a href="./product-detail.html" class="img-wrap"> <img src="./public/images/items/4.jpg"> </a>
-                    <figcaption class="info-wrap">
-                        <a href="./product-detail.html" class="title">Just another product name</a>
-                        <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-                    </figcaption>
-                </div>
-            </div> <!-- col.// -->
-            <div class="col-md-3">
-                <div class="card card-product-grid">
-                    <a href="./product-detail.html" class="img-wrap"> <img src="./public/images/items/5.jpg"> </a>
-                    <figcaption class="info-wrap">
-                        <a href="./product-detail.html" class="title">Just another product name</a>
-                        <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-                    </figcaption>
-                </div>
-            </div> <!-- col.// -->
-            <div class="col-md-3">
-                <div class="card card-product-grid">
-                    <a href="./product-detail.html" class="img-wrap"> <img src="./public/images/items/6.jpg"> </a>
-                    <figcaption class="info-wrap">
-                        <a href="./product-detail.html" class="title">Some item name here</a>
-                        <div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
-                    </figcaption>
-                </div>
-            </div> <!-- col.// -->
-            <div class="col-md-3">
-                <div class="card card-product-grid">
-                    <a href="./product-detail.html" class="img-wrap"> <img src="./public/images/items/7.jpg"> </a>
-                    <figcaption class="info-wrap">
-                        <a href="./product-detail.html" class="title">Great product name here</a>
-                        <div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
-                    </figcaption>
-                </div>
-            </div> <!-- col.// -->
-            <div class="col-md-3">
-                <div class="card card-product-grid">
-                    <a href="./product-detail.html" class="img-wrap"> <img src="./public/images/items/9.jpg"> </a>
-                    <figcaption class="info-wrap">
-                        <a href="./product-detail.html" class="title">Just another product name</a>
-                        <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-                    </figcaption>
-                </div>
-            </div> <!-- col.// -->
+            <?php foreach ($products as $product) : ?>
+                <div class="col-md-3">
+                    <div class="card card-product-grid">
+                        <a href="./product-detail.html" class="img-wrap"> <img src="<?= $product->image ?>"> </a>
+                        <figcaption class="info-wrap">
+                            <a href="./single-product.php?id=<?= $product->id ?>" class="title"><?= $product->name ?></a>
+                            <div class="price mt-1">$<?= $product->price ?></div> <!-- price-wrap.// -->
+                        </figcaption>
+                    </div>
+                </div> <!-- col.// -->
+            <?php endforeach; ?>
         </div> <!-- row.// -->
 
     </div><!-- container // -->

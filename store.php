@@ -5,17 +5,16 @@
 <!-- get all categories from category view  -->
 <?php $categories = $cat->getAllCategories(); ?>
 <!-- get products  -->
-<?php $prod = new ProductView() ?>
-<?php $products = $prod->getAllProducts() ?>
+<?php $prod = new ProductView();
+$products = $prod->getAllProducts();
+?>
 <!-- displaying products and filtr by category  -->
 <?php
-// if (isset($_GET['category']) && !empty($_GET['category'])) {
-//     $categoryName = $_GET['category'];
-//     $category = $cat->getCategoryByName($categoryName);
-//     echo $category->id;
-// } else {
-//     echo "hyhy";
-// }
+if (isset($_GET['category']) && !empty($_GET['category'])) {
+    $categoryName = $_GET['category'];
+    $category = $cat->getCategoryByName($categoryName);
+    $products = $prod->getProductsCategory($category->id);
+}
 
 ?>
 <header class="section-header">
@@ -65,13 +64,14 @@
                             <i class="fa fa-bars"></i> All category
                         </button>
                         <div class="dropdown-menu">
+                            <a class="dropdown-item" href="store.php">all</a>
                             <?php foreach ($categories as $category) : ?>
                                 <a class="dropdown-item" href="store.php?category=<?php echo $category->name ?>"><?php echo $category->name ?> </a>
                             <?php endforeach; ?>
                         </div>
                     </div> <!-- category-wrap.// -->
                 </div> <!-- col.// -->
-                <a href="./store.html" class="btn btn-outline-primary">Store</a>
+                <a href="./store.php" class="btn btn-outline-primary">Store</a>
                 <div class="col-lg  col-md-6 col-sm-12 col">
                     <form action="#" class="search">
                         <div class="input-group w-100">
@@ -138,6 +138,7 @@
                             <div class="card-body">
 
                                 <ul class="list-menu">
+                                    <li><a href="store.php">all</a></li>
                                     <?php foreach ($categories as $category) : ?>
 
                                         <li><a href="store.php?category=<?= $category->name ?>"><?= $category->name ?> </a></li>
