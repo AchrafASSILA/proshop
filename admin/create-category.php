@@ -16,19 +16,24 @@
     <section class="form" id="form">
         <div class="form-container">
             <div class="head">
-                <h3>Add Developer</h3>
+                <h3>Add Category</h3>
             </div>
-            <form action="">
+            <form action="./formHandling/category-form.php" method="post">
                 <div class="field">
-                    <input type="text" name="name" placeholder="Full Name" />
+                    <label for="name">Category Name : </label> <br>
+                    <input type="text" name="name" id="name" placeholder="Category Name" />
                 </div>
                 <div class="field">
-                    <input type="email" name="email" placeholder="Email" />
-                </div>
-                <div class="field">
-                    <textarea name="message" cols="20" rows="10" placeholder="Description"></textarea>
-                </div>
-                <input type="submit" class="btn" value="Add" />
+                    <label for="description">Category Description : </label> <br> <br>
+                    <textarea name="description" cols="20" rows="10" placeholder="Description"></textarea><br> <br>
+                    <?php if (isset($_GET['error'])) { ?>
+                        <span style="color: red;font-weight:bold;;text-align:center;display:block;"><?= $_GET['error'] ?></span>
+                    <?php } ?>
+                    <?php if (isset($_GET['succes'])) { ?>
+                        <span style="color: #4caf50;font-weight:bold;;text-align:center;display:block;"><?= $_GET['succes'] ?></span>
+                    <?php } ?>
+                </div> <br>
+                <input type="submit" class="btn" name="submit" value="Add" />
             </form>
         </div>
     </section>

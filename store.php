@@ -228,7 +228,7 @@
 
                 <header class="border-bottom mb-4 pb-3">
                     <div class="form-inline">
-                        <span class="mr-md-auto">32 Items found </span>
+                        <span class="mr-md-auto"><?php echo count($products) ?> Items found </span>
 
                     </div>
                 </header><!-- sect-heading -->
@@ -244,7 +244,7 @@
                                 </div> <!-- img-wrap.// -->
                                 <figcaption class="info-wrap">
                                     <div class="fix-height">
-                                        <a href="./product-detail.html" class="title"><?= $product->name ?></a>
+                                        <a href="./single-product.php?id=<?= $product->id ?>" class="title"><?= $product->name ?></a>
                                         <div class="price-wrap mt-2">
                                             <span class="price">$<?= $product->price ?></span>
                                             <del class="price-old">$80</del>

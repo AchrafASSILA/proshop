@@ -228,6 +228,7 @@ body {
   padding: 20px;
   box-shadow: var(--mainBoxShadow);
   border-radius: 5px;
+  width: fit-content;
 }
 .cardHeader {
   display: flex;
@@ -253,6 +254,12 @@ body {
 }
 .details .table thead td {
   font-weight: 600;
+}
+.details .table thead td a:nth-child(1) {
+  color: #4caf50;
+}
+.details .table thead td a:nth-child(2) {
+  color: red;
 }
 .details .table thead tr {
   color: var(--black1);

@@ -1,4 +1,10 @@
 <?php require_once './includes/header.php' ?>
+<?php require_once './autoload.class.php' ?>
+<!-- get products  -->
+<?php $prod = new ProductView() ?>
+<?php $products = $prod->getAllProducts() ?>
+<!-- instanciate from category view -->
+<?php $cat = new CategoryView(); ?>
 <!-- start main  -->
 <div class="main">
     <div class="topbar">
@@ -77,90 +83,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><img src="" alt="hy"></td>
-                        <td>name</td>
-                        <td>99.9 $</td>
-                        <td>20</td>
-                        <td>name</td>
-                        <td>date</td>
-                        <td>date</td>
-                        <td><a href="#">Edit</a>
-                            <a href="#">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><img src="" alt="hy"></td>
-                        <td>name</td>
-                        <td>99.9 $</td>
-                        <td>20</td>
-                        <td>name</td>
-                        <td>date</td>
-                        <td>date</td>
-                        <td><a href="#">Edit</a>
-                            <a href="#">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><img src="" alt="hy"></td>
-                        <td>name</td>
-                        <td>99.9 $</td>
-                        <td>20</td>
-                        <td>name</td>
-                        <td>date</td>
-                        <td>date</td>
-                        <td><a href="#">Edit</a>
-                            <a href="#">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><img src="" alt="hy"></td>
-                        <td>name</td>
-                        <td>99.9 $</td>
-                        <td>20</td>
-                        <td>name</td>
-                        <td>date</td>
-                        <td>date</td>
-                        <td><a href="#">Edit</a>
-                            <a href="#">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><img src="" alt="hy"></td>
-                        <td>name</td>
-                        <td>99.9 $</td>
-                        <td>20</td>
-                        <td>name</td>
-                        <td>date</td>
-                        <td>date</td>
-                        <td><a href="#">Edit</a>
-                            <a href="#">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><img src="" alt="hy"></td>
-                        <td>name</td>
-                        <td>99.9 $</td>
-                        <td>20</td>
-                        <td>name</td>
-                        <td>date</td>
-                        <td>date</td>
-                        <td><a href="#">Edit</a>
-                            <a href="#">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><img src="" alt="hy"></td>
-                        <td>name</td>
-                        <td>99.9 $</td>
-                        <td>20</td>
-                        <td>name</td>
-                        <td>date</td>
-                        <td>date</td>
-                        <td><a href="#">Edit</a>
-                            <a href="#">Delete</a>
-                        </td>
-                    </tr>
+                    <?php foreach ($products as  $product) : ?>
+                        <?php $category = $cat->getCategoryByid($product->category) ?>
+                        <tr>
+                            <td><img width="70px" height="70px" src="<?php echo  '..\\' . $product->image ?>" alt="hy"></td>
+                            <td><?= $product->name ?></td>
+                            <td><?= $product->price ?>$</td>
+                            <td><?= $product->stock ?></td>
+                            <td><?= $category->name ?></td>
+                            <td><?= $product->created_at ?></td>
+                            <td><?= $product->modified_at ?></td>
+                            <td><a style="color: #4caf50;" href="#">Edit</a>
+                                <a style="color: red;" href="#">Delete</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
 
                 </tbody>
             </table>

@@ -23,4 +23,13 @@ class CategoryModyl extends Db
         $categoryId = $statement->fetch(PDO::FETCH_OBJ);
         return $categoryId;
     }
+    public function getCategoryById($id)
+    {
+        $categoryName = '';
+        $sql = 'SELECT name FROM categories WHERE id = ?';
+        $statement = $this->connect()->prepare($sql);
+        $statement->execute([$id]);
+        $categoryName = $statement->fetch(PDO::FETCH_OBJ);
+        return $categoryName;
+    }
 }

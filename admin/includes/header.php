@@ -31,7 +31,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="./index.php">
                         <span class="icon"><i class="fas fa-home"></i></span>
                         <span class="title"> Dashboard</span>
                     </a>

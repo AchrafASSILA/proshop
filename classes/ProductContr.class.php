@@ -18,9 +18,9 @@ class ProductContr extends Db
     private $image_error;
     private $image_size;
     private $image_location_upload;
-
+    private $location;
     // constructor 
-    public function __construct($n, $p, $s, $d, $c, $in, $it, $ie, $is, $ilu)
+    public function __construct($n, $p, $s, $d, $c, $in, $it, $ie, $is, $ilu, $l)
     {
         $this->name = $n;
         $this->price = $p;
@@ -32,33 +32,14 @@ class ProductContr extends Db
         $this->image_error = $ie;
         $this->image_size = $is;
         $this->image_location_upload = $ilu;
-    }
-    // form validations
-    public function emptyInputs()
-    {
-        if (empty($this->name) || empty($this->price) || empty($this->stock) || empty($this->description) || empty($this->category)) {
-            return true;
-        }
-    }
-    public function imageError()
-    {
-        if ($this->image_error !== 0) {
-            return true;
-        }
-    }
-    public function imageSize()
-    {
-        if ($this->image_size > 500000) {
-            return true;
-        }
+        $this->location = $l;
     }
     // create product
     public function createProduct()
     {
         // created at 
-        $created_at = date('d M Y H:i:s');
-        $move_to_file = '../public/images/products/' . $this->image_name;
-        // move_uploaded_file($this->image_tmp, $this->);
+        $created_at = date('y/m/d');
+        move_uploaded_file($this->image_tmp, $this->location);
         $sql = 'INSERT INTO products(name,description,price,image,stock,category,created_at) VALUES(?,?,?,?,?,?,?) ';
         $statement = $this->connect()->prepare($sql);
         $statement->execute([
@@ -70,6 +51,5 @@ class ProductContr extends Db
             $this->category,
             $created_at
         ]);
-        return true;
     }
 }
