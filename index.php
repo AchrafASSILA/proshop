@@ -1,12 +1,12 @@
 <?php require_once './includes/header.php' ?>
 <?php require './autoload.classes.php' ?>
 <!-- instanciate from category view -->
-<?php $cat = new CategoryView(); ?>
+<?php $cat = new Category(); ?>
 <!-- get all categories from category view  -->
-<?php $categories = $cat->getAllCategories(); ?>
+<?php $categories = $cat->getCategories(); ?>
 <!-- get products  -->
-<?php $prod = new ProductView();
-$products = $prod->getAllProducts();
+<?php $prod = new Product();
+$products = $prod->getProducts(null);
 ?>
 <header class="section-header">
     <nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
@@ -118,7 +118,7 @@ $products = $prod->getAllProducts();
             <?php foreach ($products as $product) : ?>
                 <div class="col-md-3">
                     <div class="card card-product-grid">
-                        <a href="./product-detail.html" class="img-wrap"> <img src="<?= $product->image ?>"> </a>
+                        <a href="./single-product.php?id=<?= $product->id ?>" class="img-wrap"> <img src="<?= $product->image ?>"> </a>
                         <figcaption class="info-wrap">
                             <a href="./single-product.php?id=<?= $product->id ?>" class="title"><?= $product->name ?></a>
                             <div class="price mt-1">$<?= $product->price ?></div> <!-- price-wrap.// -->

@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../classes/ProductContr.class.php';
+require_once '../../classes/Product.class.php';
 require_once '../../classes/FormValidation.class.php';
 
 
@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
     $image_location_upload = './public/images/products/' . $image_name;
     $location = '..\..\public\images\products\\' . $image_name;
     // intanciated from product controller 
-    $product = new ProductContr($name, $price, $stock, $description, $category, $image_name, $image_tmp, $image_error, $image_size, $image_location_upload, $location);
+    $product = new Product();
     // intanciated from form validation 
     $validationObject = new FormValidation();
     // run error handlings 
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
         header('Location: /proshop/admin/create-product.php?error=the size of image is too big');
         exit();
     }
-    $product->createProduct();
+    $product->createProduct($name, $price, $stock, $description, $category, $image_name, $image_tmp, $image_error, $image_size, $image_location_upload, $location);
 
     header('Location: /proshop/admin/create-product.php?succes=the product was inserted');
 } else {

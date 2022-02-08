@@ -3,16 +3,30 @@ require_once __DIR__ . './db.class.php';
 
 
 
-class CategoryModyl extends Db
+class Category extends Db
 {
-    private $categories;
+    // create category
+    public function createCategory($n, $d)
+    {
+        // created at 
+        $created_at = date('y/m/d');
+        $sql = 'INSERT INTO categories(name,description,created) VALUES(?,?,?) ';
+        $statement = $this->connect()->prepare($sql);
+        $statement->execute([
+            $n,
+            $d,
+            $created_at
+        ]);
+    }
+    // get all categories 
     public function getCategories()
     {
+        $categories = '';
         $sql = 'SELECT * FROM categories';
         $statement = $this->connect()->prepare($sql);
         $statement->execute([]);
-        $this->categories = $statement->fetchAll(PDO::FETCH_OBJ);
-        return $this->categories;
+        $categories = $statement->fetchAll(PDO::FETCH_OBJ);
+        return $categories;
     }
     public function getCategoryByName($name)
     {

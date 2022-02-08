@@ -1,19 +1,19 @@
 <?php require_once './includes/header.php' ?>
 <?php require './autoload.classes.php' ?>
 <!-- instanciate from category view -->
-<?php $cat = new CategoryView(); ?>
+<?php $cat = new Category(); ?>
 <!-- get all categories from category view  -->
-<?php $categories = $cat->getAllCategories(); ?>
+<?php $categories = $cat->getCategories(); ?>
 <!-- get products  -->
-<?php $prod = new ProductView();
-$products = $prod->getAllProducts();
+<?php $prod = new Product();
+$products = $prod->getProducts(null);
 ?>
 <!-- displaying products and filtr by category  -->
 <?php
 if (isset($_GET['category']) && !empty($_GET['category'])) {
     $categoryName = $_GET['category'];
     $category = $cat->getCategoryByName($categoryName);
-    $products = $prod->getProductsCategory($category->id);
+    $products = $prod->getProducts($category->id);
 }
 
 ?>

@@ -1,8 +1,8 @@
 <?php require_once './includes/header.php' ?>
 <?php require_once './autoload.class.php' ?>
 <!-- get products  -->
-<?php $prod = new ProductView() ?>
-<?php $products = $prod->getAllProducts() ?>
+<?php $prod = new Product() ?>
+<?php $products = $prod->getProducts(null) ?>
 <!-- instanciate from category view -->
 <?php $cat = new CategoryView(); ?>
 <!-- start main  -->
