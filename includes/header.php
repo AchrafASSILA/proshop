@@ -13,6 +13,8 @@
 
     <!-- jQuery -->
     <script src="./public/js/jquery-2.0.0.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
     <!-- Bootstrap4 files-->
     <script src="./public/js/bootstrap.bundle.min.js" type="text/javascript"></script>

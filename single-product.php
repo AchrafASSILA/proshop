@@ -1,12 +1,17 @@
 <?php require_once './includes/header.php' ?>
 <?php require_once './autoload.classes.php' ?>
+<!-- check if there valid id in adresse libk  -->
+<?php if (!isset($_GET['id']) || empty($_GET['id'])) header('Location: ./index.php') ?>
 <?php
-if (!isset($_GET['id']) || empty($_GET['id']))
-    header('Location: ./index.php')
-?>
-<?php $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+$id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+
+// instanciated 
 $obj = new Product();
+
+// get product 
 $product = $obj->getSingleProduct($id);
+
+// check if the product in db 
 if ($product) {
 ?>
     <header class="section-header">
@@ -51,19 +56,20 @@ if ($product) {
                         </a> <!-- brand-wrap.// -->
                     </div>
                     <div class="col-lg col-sm col-md col-6 flex-grow-0">
-                        <!-- <div class="category-wrap dropdown d-inline-block float-right">
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-bars"></i> All category
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Machinery / Mechanical Parts / Tools </a>
-                            <a class="dropdown-item" href="#">Consumer Electronics / Home Appliances </a>
-                            <a class="dropdown-item" href="#">Auto / Transportation</a>
-                            <a class="dropdown-item" href="#">Apparel / Textiles / Timepieces </a>
-                            <a class="dropdown-item" href="#">Home & Garden / Construction / Lights </a>
-                            <a class="dropdown-item" href="#">Beauty & Personal Care / Health </a>
+                        <div class="category-wrap dropdown d-inline-block float-right">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bars"></i> All category
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Machinery / Mechanical Parts / Tools </a>
+                                <a class="dropdown-item" href="#">Consumer Electronics / Home Appliances </a>
+                                <a class="dropdown-item" href="#">Auto / Transportation</a>
+                                <a class="dropdown-item" href="#">Apparel / Textiles / Timepieces </a>
+                                <a class="dropdown-item" href="#">Home & Garden / Construction / Lights </a>
+                                <a class="dropdown-item" href="#">Beauty & Personal Care / Health </a>
+                            </div>
                         </div>
-                    </div> category-wrap.// -->
+                        <!-- category-wrap.// -->
                     </div> <!-- col.// -->
                     <a href="./store.html" class="btn btn-outline-primary">Store</a>
                     <div class="col-lg  col-md-6 col-sm-12 col">

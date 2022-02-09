@@ -49,13 +49,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="./chart.php">
                         <span class="icon"><i class="fas fa-chart-line"></i></span>
                         <span class="title"> Charts</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="./logout.php">
                         <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
                         <span class="title"> Logout</span>
                     </a>

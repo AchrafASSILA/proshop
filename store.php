@@ -73,9 +73,9 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
                 </div> <!-- col.// -->
                 <a href="./store.php" class="btn btn-outline-primary">Store</a>
                 <div class="col-lg  col-md-6 col-sm-12 col">
-                    <form action="#" class="search">
+                    <form action="" method="post" class="search">
                         <div class="input-group w-100">
-                            <input type="text" class="form-control" style="width:60%;" placeholder="Search">
+                            <input type="text" id="search_query" class="form-control" style="width:60%;" placeholder="Search">
 
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="submit">
@@ -225,16 +225,16 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
                 </div> <!-- card.// -->
 
             </aside> <!-- col.// -->
-            <main class="col-md-9">
+            <main class="col-md-9" id="product_row">
 
                 <header class="border-bottom mb-4 pb-3">
                     <div class="form-inline">
-                        <span class="mr-md-auto"><?php echo count($products) ?> Items found </span>
+                        <span class="mr-md-auto" id="count"><?php echo count($products) ?> Items found </span>
 
                     </div>
                 </header><!-- sect-heading -->
 
-                <div class="row">
+                <div class="row" id="">
                     <?php foreach ($products as $product) : ?>
                         <div class="col-md-4">
                             <figure class="card card-product-grid">
@@ -275,5 +275,22 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
 
     </div> <!-- container .//  -->
 </section>
+<script>
+    $(document).ready(function() {
+        $('#search_query').keypress(function() {
+            $.ajax({
+                type: 'POST',
+                url: 'search.php',
+                data: {
+                    name: $("#search_query").val(),
+                },
+                success: function(data) {
+                    $('#product_row').html(data);
+
+                }
+            })
+        })
+    })
+</script>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 <?php require_once './includes/footer.php' ?>

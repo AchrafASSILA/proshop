@@ -58,7 +58,7 @@ class Product extends Db
     {
         $products = '';
         if ($category) {
-            $sql = 'SELECT * FROM products WHERE category = ?';
+            $sql = "SELECT * FROM products WHERE category = ?";
             $statement = $this->connect()->prepare($sql);
             $statement->execute([$category]);
         } else {

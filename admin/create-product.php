@@ -1,8 +1,8 @@
 <?php require_once '../autoload.classes.php' ?>
 <!-- instanciate from category view -->
-<?php $cat = new CategoryView(); ?>
+<?php $cat = new Category(); ?>
 <!-- get all categories from category view  -->
-<?php $categories = $cat->getAllCategories(); ?>
+<?php $categories = $cat->getCategories(); ?>
 
 <!-- start main  -->
 <?php require_once './includes/header.php' ?>

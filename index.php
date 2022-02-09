@@ -55,7 +55,7 @@ $products = $prod->getProducts(null);
                 </div> <!-- col.// -->
                 <a href="./store.php" class="btn btn-outline-primary">Store</a>
                 <div class="col-lg  col-md-6 col-sm-12 col">
-                    <form action="#" class="search">
+                    <!-- <form action="#" class="search">
                         <div class="input-group w-100">
                             <input type="text" class="form-control" style="width:60%;" placeholder="Search">
 
@@ -65,7 +65,8 @@ $products = $prod->getProducts(null);
                                 </button>
                             </div>
                         </div>
-                    </form> <!-- search-wrap .end// -->
+                    </form> -->
+                    <!-- search-wrap .end// -->
                 </div> <!-- col.// -->
                 <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
                     <div class="d-flex justify-content-end mb-3 mb-lg-0">
