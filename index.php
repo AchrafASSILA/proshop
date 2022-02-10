@@ -73,8 +73,8 @@ $products = $prod->getProducts(null);
                         <div class="widget-header">
                             <small class="title text-muted">Welcome guest!</small>
                             <div>
-                                <a href="./signin.html">Sign in</a> <span class="dark-transp"> | </span>
-                                <a href="./register.html"> Register</a>
+                                <a href="./login.php">Sign in</a> <span class="dark-transp"> | </span>
+                                <a href="./register.php"> Register</a>
                             </div>
                         </div>
                         <a href="./cart.html" class="widget-header pl-3 ml-3">
