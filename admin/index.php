@@ -96,8 +96,8 @@ if (($_SESSION['admin_username'])) { ?>
                                 <td><?= $category->name ?></td>
                                 <td><?= $product->created_at ?></td>
                                 <td><?= $product->modified_at ?></td>
-                                <td><a style="color: #4caf50;" href="#">Edit</a>
-                                    <a style="color: red;" href="#">Delete</a>
+                                <td><a style="color: #4caf50;" href="./update-product.php?id=<?= $product->id ?>">Edit</a>
+                                    <a style="color: #ff3939;" onclick="return confirm('are you want to delete this product <?= $product->name ?>')" href="./delete-product.php?id=<?= $product->id ?>">Delete</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

@@ -1,10 +1,10 @@
 <?php session_start();
-echo "<pre>";
-print_r($_COOKIE);
-echo "</pre> . </br>";
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre> . </br>";
+// echo "<pre>";
+// print_r($_COOKIE);
+// echo "</pre> . </br>";
+// echo "<pre>";
+// print_r($_SESSION);
+// echo "</pre> . </br>";
 ?>
 <!DOCTYPE HTML>
 <html lang="en">

@@ -2,7 +2,7 @@
 
 require_once './classes/db.class.php';
 $db = new Db();
-$sql = "select  * from products where name like '%" .  $_POST['name']  . "%'";
+$sql = "select  * from products where name like '%" . $_POST['name']  . "%'";
 $statement = $db->connect()->prepare($sql);
 $statement->execute([]);
 $products = $statement->fetchAll(PDO::FETCH_OBJ);

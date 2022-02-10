@@ -44,6 +44,12 @@
                 </li>
                 <li>
                     <a href="#">
+                        <span class="icon"><i class="fa-solid fa-box"></i></span>
+                        <span class="title"> Products</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
                         <span class="icon"><i class="far fa-comment"></i></span>
                         <span class="title"> Orders</span>
                     </a>

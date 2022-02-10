@@ -8,33 +8,6 @@ require_once __DIR__ . './db.class.php';
 
 class Product extends Db
 {
-
-    // private $name;
-    // private $price;
-    // private $stock;
-    // private $description;
-    // private $category;
-    // private $image_name;
-    // private $image_tmp;
-    // private $image_error;
-    // private $image_size;
-    // private $image_location_upload;
-    // private $location;
-    // // constructor 
-    // public function __construct($n, $p, $s, $d, $c, $in, $it, $ie, $is, $ilu, $l)
-    // {
-    //     $this->name = $n;
-    //     $this->price = $p;
-    //     $this->stock = $s;
-    //     $this->description = $d;
-    //     $this->category = $c;
-    //     $this->image_name = $in;
-    //     $this->image_tmp = $it;
-    //     $this->image_error = $ie;
-    //     $this->image_size = $is;
-    //     $this->image_location_upload = $ilu;
-    //     $this->location = $l;
-    // }
     // create product
     public function createProduct($n, $p, $s, $d, $c, $in, $it, $ie, $is, $ilu, $l)
     {
@@ -79,5 +52,47 @@ class Product extends Db
         $statement->execute([$id]);
         $product = $statement->fetch(PDO::FETCH_OBJ);
         return $product;
+    }
+
+    // update product 
+    public function updateProduct($name, $price, $stock, $description, $category, $image_name, $image_tmp, $image_error, $image_size, $image_location_upload, $location, $id)
+    {
+        // modified at 
+        $modified_at = date('y/m/d');
+        move_uploaded_file($image_tmp, $location);
+        if ($image_name) {
+            $sql = 'UPDATE products SET name = ? ,description=?,price=?,image=?,stock=?,category=?,modified_at=? WHERE id = ?';
+            $statement = $this->connect()->prepare($sql);
+            $statement->execute([
+                $name,
+                $description,
+                $price,
+                $image_location_upload,
+                $stock,
+                $category,
+                $modified_at,
+                $id
+            ]);
+        } else {
+            $sql = 'UPDATE products SET name = ? ,description=?,price=?,stock=?,category=?,modified_at=? WHERE id = ?';
+            $statement = $this->connect()->prepare($sql);
+            $statement->execute([
+                $name,
+                $description,
+                $price,
+                $stock,
+                $category,
+                $modified_at,
+                $id
+            ]);
+        }
+    }
+
+    // delete product 
+    public function deleteProduct($id)
+    {
+        $sql = 'DELETE FROM products WHERE id = ?';
+        $statement = $this->connect()->prepare($sql);
+        $statement->execute([$id]);
     }
 }
