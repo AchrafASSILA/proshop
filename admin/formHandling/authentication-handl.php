@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../classes/FormValidation.class.php';
+require_once '../../classes/Authentication.class.php';
 
 
 if (isset($_POST['register'])) {
@@ -26,6 +27,20 @@ if (isset($_POST['register'])) {
         header('Location: /proshop/register.php?error=password not match');
         exit();
     }
+    // check if username are exists 
+    $obj = new Authentication();
+    $customer = $obj->getCustomer($username);
+    if ($customer) {
+        header('Location: /proshop/register.php?error=username was taken');
+        exit();
+    }
+
+    // insert customer in data base if there is no errors 
+    $obj->createCustomer($first_name, $last_name, $username, $password);
+    // create customer session for login 
+    $customer = $obj->getCustomer($username);
+    $obj->createCustomerSession($customer);
+    header('Location: /proshop/store.php');
 } elseif (isset($_POST['login'])) {
     //get date 
     $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);

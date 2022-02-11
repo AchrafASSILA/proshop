@@ -1,5 +1,8 @@
 <?php require_once './includes/header.php' ?>
-<?php require './autoload.classes.php' ?>
+<?php require './autoload.classes.php';
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>"; ?>
 <!-- instanciate from category view -->
 <?php $cat = new Category(); ?>
 <!-- get all categories from category view  -->
