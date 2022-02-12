@@ -3,7 +3,6 @@
 require_once '../../classes/FormValidation.class.php';
 require_once '../../classes/Authentication.class.php';
 
-
 if (isset($_POST['register'])) {
     // get data 
     $first_name = filter_var($_POST['first_name'], FILTER_SANITIZE_STRING);
@@ -56,6 +55,12 @@ if (isset($_POST['register'])) {
         header('Location: /proshop/login.php?error=enter a valid username');
         exit();
     }
+    // check if username are exists 
+    $obj = new Authentication();
+    $customer = $obj->getCustomer($username);
+    // create customer session for login 
+    $obj->createCustomerSession($customer);
+    header('Location: /proshop/store.php');
 } else {
     header('Location: /proshop/register.php');
 }

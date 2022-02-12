@@ -91,10 +91,16 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
                 <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
                     <div class="d-flex justify-content-end mb-3 mb-lg-0">
                         <div class="widget-header">
-                            <small class="title text-muted">Welcome guest!</small>
+                            <?php if (isset($_SESSION['customer_username']) && isset($_SESSION['customer_id'])) { ?>
+                                <small class="title text-muted">Welcome <?= $_SESSION['customer_username'] ?>!</small>
+                            <?php } ?>
                             <div>
-                                <a href="./signin.html">Sign in</a> <span class="dark-transp"> | </span>
-                                <a href="./register.html"> Register</a>
+                                <?php if (isset($_SESSION['customer_username']) && isset($_SESSION['customer_id'])) { ?>
+                                    <a href="./logout.php"> Logout</a>
+                                <?php } else { ?>
+                                    <a href="./login.php">Sign in</a> <span class="dark-transp"> | </span>
+                                    <a href="./login.php"> Register</a>
+                                <?php } ?>
                             </div>
                         </div>
                         <a href="./cart.html" class="widget-header pl-3 ml-3">

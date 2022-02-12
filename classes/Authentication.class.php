@@ -46,4 +46,11 @@ class Authentication extends Db
         $_SESSION['customer_username'] = $customer->username;
         $_SESSION['customer_id'] = $customer->id;
     }
+
+    public function destroyCustomerSession()
+    {
+        session_start();
+        unset($_SESSION['customer_username']);
+        unset($_SESSION['customer_id']);
+    }
 }

@@ -5,6 +5,15 @@
 // echo "<pre>";
 // print_r($_SESSION);
 // echo "</pre> . </br>";
+// $_SESSION['cart'] = array(
+//     1 => array(
+//         'name' => 'hy',
+//         'product' => 'hy',
+//         'quantity' => 'hy',
+//     ),
+//     'total' => 2,
+// );
+
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
