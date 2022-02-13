@@ -1,8 +1,5 @@
 <?php require_once './includes/header.php' ?>
-<?php require './autoload.classes.php';
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>"; ?>
+<?php require './autoload.classes.php'; ?>
 <!-- instanciate from category view -->
 <?php $cat = new Category(); ?>
 <!-- get all categories from category view  -->
@@ -18,6 +15,12 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
     $category = $cat->getCategoryByName($categoryName);
     $products = $prod->getProducts($category->id);
 }
+
+?>
+<!-- start paginations  -->
+<?php
+$pag = new Paginator($products, 3);
+$products = $pag->getProductPerPage();
 
 ?>
 <header class="section-header">
@@ -268,15 +271,25 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
                 </div> <!-- row end.// -->
 
 
-                <!-- <nav class="mt-4" aria-label="Page navigation sample">
+                <nav class="mt-4" aria-label="Page navigation sample">
                     <ul class="pagination">
-                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        <?php
+                        //  if (isset($_GET['page']) && $_GET['page'] >= 2) 
+                        //         <!-- <li class="page-item"><a class="page-link" href="./store.php?page=<?php echo $_GET['page']-- 
+                        // ">Previous</a></li>
+                        // endif; 
+                        ?>
+                        <?php if ($pag->pages > 1) : ?>
+                            <?php for ($i = 1; $i <= $pag->pages; $i++) : ?>
+                                <?php if (isset($_GET['page']) && $_GET['page'] == $i) : ?>
+                                    <li class="page-item active"><a class="page-link" href="./store.php?page=<?= $i ?>"><?= $i ?></a></li>
+                                <?php else : ?>
+                                    <li class="page-item"><a class="page-link" href="./store.php?page=<?= $i ?>"><?= $i ?></a></li>
+                                <?php endif; ?>
+                            <?php endfor; ?>
+                        <?php endif; ?>
                     </ul>
-                </nav> -->
+                </nav>
 
             </main> <!-- col.// -->
 
