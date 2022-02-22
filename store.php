@@ -17,12 +17,7 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
 }
 
 ?>
-<!-- start paginations  -->
-<?php
-$pag = new Paginator($products, 3);
-$products = $pag->getProductPerPage();
 
-?>
 <header class="section-header">
     <nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
         <div class="container">
@@ -106,7 +101,7 @@ $products = $pag->getProductPerPage();
                                 <?php } ?>
                             </div>
                         </div>
-                        <a href="./cart.html" class="widget-header pl-3 ml-3">
+                        <a href="./cart.php" class="widget-header pl-3 ml-3">
                             <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
                             <span class="badge badge-pill badge-danger notify">0</span>
                         </a>
@@ -279,15 +274,6 @@ $products = $pag->getProductPerPage();
                         // ">Previous</a></li>
                         // endif; 
                         ?>
-                        <?php if ($pag->pages > 1) : ?>
-                            <?php for ($i = 1; $i <= $pag->pages; $i++) : ?>
-                                <?php if (isset($_GET['page']) && $_GET['page'] == $i) : ?>
-                                    <li class="page-item active"><a class="page-link" href="./store.php?page=<?= $i ?>"><?= $i ?></a></li>
-                                <?php else : ?>
-                                    <li class="page-item"><a class="page-link" href="./store.php?page=<?= $i ?>"><?= $i ?></a></li>
-                                <?php endif; ?>
-                            <?php endfor; ?>
-                        <?php endif; ?>
                     </ul>
                 </nav>
 
