@@ -47,15 +47,21 @@
             <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
                 <div class="d-flex justify-content-end mb-3 mb-lg-0">
                     <div class="widget-header">
-                        <small class="title text-muted">Welcome guest!</small>
+                        <?php if (isset($_SESSION['customer_username']) && isset($_SESSION['customer_id'])) { ?>
+                            <small class="title text-muted">Welcome <?= $_SESSION['customer_username'] ?>!</small>
+                        <?php } ?>
                         <div>
-                            <a href="./login.php">Sign in</a> <span class="dark-transp"> | </span>
-                            <a href="./register.php"> Register</a>
+                            <?php if (isset($_SESSION['customer_username']) && isset($_SESSION['customer_id'])) { ?>
+                                <a href="./logout.php"> Logout</a>
+                            <?php } else { ?>
+                                <a href="./login.php">Sign in</a> <span class="dark-transp"> | </span>
+                                <a href="./login.php"> Register</a>
+                            <?php } ?>
                         </div>
                     </div>
-                    <a href="./cart.html" class="widget-header pl-3 ml-3">
+                    <a href="./cart.php" class="widget-header pl-3 ml-3">
                         <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
-                        <span class="badge badge-pill badge-danger notify">0</span>
+                        <span class="badge badge-pill badge-danger notify"><?= count($order_items) ?></span>
                     </a>
                 </div> <!-- widgets-wrap.// -->
             </div> <!-- col.// -->
@@ -129,7 +135,10 @@
                                         </div> <!-- price-wrap .// -->
                                     </td>
                                     <td class="text-right">
-                                        <a href="" class="btn btn-danger"> Remove</a>
+                                        <form action="./admin/formHandling/order-form.php" method="post">
+                                            <input type="hidden" name="product_id" value="<?= $order_item->product ?>">
+                                            <button type="submit" name="remove" class="btn btn-danger"> Remove</button>
+                                        </form>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -158,7 +167,7 @@
                         <p class="text-center mb-3">
                             <img src="./public/images/misc/payments.png" height="26">
                         </p>
-                        <a href="./place-order.html" class="btn btn-primary btn-block"> Checkout </a>
+                        <a href="./place-order.php" class="btn btn-primary btn-block"> Checkout </a>
                         <a href="./store.php" class="btn btn-light btn-block">Continue Shopping</a>
                     </div> <!-- card-body.// -->
                 </div> <!-- card.// -->

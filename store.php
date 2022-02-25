@@ -18,6 +18,10 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
 
 ?>
 
+<!-- instanciate order  -->
+<?php $order = new Order() ?>
+<!-- get all order items  -->
+<?php $order_items = json_decode(json_encode($order->getOrderItems()), true) ?>
 <header class="section-header">
     <nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
         <div class="container">
@@ -103,7 +107,7 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
                         </div>
                         <a href="./cart.php" class="widget-header pl-3 ml-3">
                             <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
-                            <span class="badge badge-pill badge-danger notify">0</span>
+                            <span class="badge badge-pill badge-danger notify"><?= count($order_items) ?></span>
                         </a>
                     </div> <!-- widgets-wrap.// -->
                 </div> <!-- col.// -->
@@ -258,7 +262,14 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
                                             <del class="price-old">$80</del>
                                         </div> <!-- price-wrap.// -->
                                     </div>
-                                    <a href="#" class="btn btn-block btn-primary">Add to cart </a>
+                                    <?php if (in_array($product->id, array_column($order_items, 'product'))) : ?>
+                                        <button class="btn btn-block btn-success" onclick="alert('product already add')">Added to cart </button>
+                                    <?php else : ?>
+                                        <form action="./admin/formHandling/order-form.php" method="post">
+                                            <input type="hidden" name="product_id" value="<?= $product->id ?>">
+                                            <button type="submit" name="add" class="btn btn-block btn-primary"> Add to cart</button>
+                                        </form>
+                                    <?php endif; ?>
                                 </figcaption>
                             </figure>
                         </div> <!-- col.// -->

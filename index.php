@@ -8,6 +8,10 @@
 <?php $prod = new Product();
 $products = $prod->getProducts(null);
 ?>
+<!-- instanciate order  -->
+<?php $order = new Order() ?>
+<!-- get all order items  -->
+<?php $order_items = $order->getOrderItems() ?>
 <header class="section-header">
     <nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
         <div class="container">
@@ -71,15 +75,21 @@ $products = $prod->getProducts(null);
                 <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
                     <div class="d-flex justify-content-end mb-3 mb-lg-0">
                         <div class="widget-header">
-                            <small class="title text-muted">Welcome guest!</small>
+                            <?php if (isset($_SESSION['customer_username']) && isset($_SESSION['customer_id'])) { ?>
+                                <small class="title text-muted">Welcome <?= $_SESSION['customer_username'] ?>!</small>
+                            <?php } ?>
                             <div>
-                                <a href="./login.php">Sign in</a> <span class="dark-transp"> | </span>
-                                <a href="./register.php"> Register</a>
+                                <?php if (isset($_SESSION['customer_username']) && isset($_SESSION['customer_id'])) { ?>
+                                    <a href="./logout.php"> Logout</a>
+                                <?php } else { ?>
+                                    <a href="./login.php">Sign in</a> <span class="dark-transp"> | </span>
+                                    <a href="./login.php"> Register</a>
+                                <?php } ?>
                             </div>
                         </div>
-                        <a href="./cart.html" class="widget-header pl-3 ml-3">
+                        <a href="./cart.php" class="widget-header pl-3 ml-3">
                             <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
-                            <span class="badge badge-pill badge-danger notify">0</span>
+                            <span class="badge badge-pill badge-danger notify"><?= count($order_items) ?></span>
                         </a>
                     </div> <!-- widgets-wrap.// -->
                 </div> <!-- col.// -->
