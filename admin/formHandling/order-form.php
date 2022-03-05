@@ -36,7 +36,7 @@ if (isset($_POST['increment'])) {
     // get data 
     $current_product = filter_var($_POST['product_id'], FILTER_SANITIZE_NUMBER_INT);
     // instanciated from order order class 
-    if (isset($_SESSION['sutomer_id'])) {
+    if (isset($_SESSION['customer_id'])) {
         $obj = new Order();
         $order = $obj->getOrder();
         // check if there is an order 
@@ -47,8 +47,9 @@ if (isset($_POST['increment'])) {
             $order = $obj->getOrder();
             $obj->addProductToOrderItems($current_product, $order);
         }
+        header('Location: /proshop/cart.php');
     } else {
-        echo "orders";
+        header('Location: /proshop/login.php');
     }
     // header('Location: /proshop/cart.php');
 } else {

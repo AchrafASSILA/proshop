@@ -22,6 +22,8 @@ if (isset($_POST['submit'])) {
     $category->createCategory($name, $description);
 
     header('Location: /proshop/admin/create-category.php?succes=the category was inserted');
+} else if (isset($_POST['edit'])) {
+    echo 'hdhd';
 } else {
     header('Location: /proshop/admin/create-category.php');
 }

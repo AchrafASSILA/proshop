@@ -1,115 +1,210 @@
-<?php
-session_start();
-if (($_SESSION['admin_username'])) { ?>
+<?php if (($_SESSION['admin_username'])) : ?>
     <?php require_once './includes/header.php' ?>
-    <?php require_once './autoload.class.php' ?>
-    <!-- get products  -->
-    <?php $prod = new Product() ?>
-    <?php $products = $prod->getProducts(null) ?>
-    <!-- instanciate from category view -->
-    <?php $cat = new Category(); ?>
-    <!-- start main  -->
-    <div class="main">
-        <div class="topbar">
-            <div class="toggle">
-                <i class="fas fa-bars" id="toggle"></i>
-            </div>
-            <div class="search">
-                <input type="text" placeholder="Search Here" name="search" id="" />
-            </div>
-            <div class="user">
-                <img src="./public/images/user.jpg" width="150px" alt="" />
-            </div>
-        </div>
-        <!-- start cards  -->
-        <div class="card-box">
-            <div class="card">
-                <div>
-                    <div class="numbers">1.504</div>
-                    <div class="card-name">Products</div>
-                </div>
-                <div class="icon">
-                    <i class="far fa-user"></i>
-                </div>
-            </div>
-            <div class="card">
-                <div>
-                    <div class="numbers">400</div>
-                    <div class="card-name">Orders</div>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-project-diagram"></i>
-                </div>
-            </div>
-            <div class="card">
-                <div>
-                    <div class="numbers">600</div>
-                    <div class="card-name">Earning</div>
-                </div>
-                <div class="icon">
-                    <i class="far fa-comment"></i>
-                </div>
-            </div>
-            <div class="card">
-                <div>
-                    <div class="numbers">1200</div>
-                    <div class="card-name">Comments</div>
-                </div>
-                <div class="icon">
-                    <i class="far fa-user"></i>
-                </div>
-            </div>
-        </div>
-        <!-- end cards  -->
-        <!-- start data list  -->
-        <div class="details">
-            <div class="recentDevelopers">
-                <div class="cardHeader">
-                    <h2>Recent Developers</h2>
-                    <div class="links">
-                        <a href="./create-product.php" class="btn">add product</a>
-                        <a href="./create-category.php" class="btn">add category</a>
-                    </div>
-                </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <td>image</td>
-                            <td>name</td>
-                            <td>price</td>
-                            <td>stock</td>
-                            <td>category</td>
-                            <td>created at</td>
-                            <td>modified at</td>
-                            <td>operations</td>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($products as  $product) : ?>
-                            <?php $category = $cat->getCategoryByid($product->category) ?>
+    <!-- partial -->
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Striped Table</h4>
+                <p class="card-description">
+                    Add class <code>.table-striped</code>
+                </p>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
                             <tr>
-                                <td><img width="70px" height="70px" src="<?php echo  '..\\' . $product->image ?>" alt="hy"></td>
-                                <td><?= $product->name ?></td>
-                                <td><?= $product->price ?>$</td>
-                                <td><?= $product->stock ?></td>
-                                <td><?= $category->name ?></td>
-                                <td><?= $product->created_at ?></td>
-                                <td><?= $product->modified_at ?></td>
-                                <td><a style="color: #4caf50;" href="./update-product.php?id=<?= $product->id ?>">Edit</a>
-                                    <a style="color: #ff3939;" onclick="return confirm('are you want to delete this product <?= $product->name ?>')" href="./delete-product.php?id=<?= $product->id ?>">Delete</a>
+                                <th>
+                                    User
+                                </th>
+                                <th>
+                                    First name
+                                </th>
+                                <th>
+                                    Progress
+                                </th>
+                                <th>
+                                    Amount
+                                </th>
+                                <th>
+                                    Deadline
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="py-1">
+                                    <img src="./public/images/faces/face1.jpg" alt="image" />
+                                </td>
+                                <td>
+                                    Herman Beck
+                                </td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    $ 77.99
+                                </td>
+                                <td>
+                                    May 15, 2015
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
-
-                    </tbody>
-                </table>
+                            <tr>
+                                <td class="py-1">
+                                    <img src="./public/images/faces/face2.jpg" alt="image" />
+                                </td>
+                                <td>
+                                    Messsy Adam
+                                </td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    $245.30
+                                </td>
+                                <td>
+                                    July 1, 2015
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-1">
+                                    <img src="./public/images/faces/face3.jpg" alt="image" />
+                                </td>
+                                <td>
+                                    John Richards
+                                </td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    $138.00
+                                </td>
+                                <td>
+                                    Apr 12, 2015
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-1">
+                                    <img src="./public/images/faces/face4.jpg" alt="image" />
+                                </td>
+                                <td>
+                                    Peter Meggik
+                                </td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    $ 77.99
+                                </td>
+                                <td>
+                                    May 15, 2015
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-1">
+                                    <img src="./public/images/faces/face5.jpg" alt="image" />
+                                </td>
+                                <td>
+                                    Edward
+                                </td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    $ 160.25
+                                </td>
+                                <td>
+                                    May 03, 2015
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-1">
+                                    <img src="./public/images/faces/face6.jpg" alt="image" />
+                                </td>
+                                <td>
+                                    John Doe
+                                </td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    $ 123.21
+                                </td>
+                                <td>
+                                    April 05, 2015
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-1">
+                                    <img src="./public/images/faces/face7.jpg" alt="image" />
+                                </td>
+                                <td>
+                                    Henry Tom
+                                </td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    $ 150.00
+                                </td>
+                                <td>
+                                    June 16, 2015
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <!-- end data list  -->
     </div>
-    <!-- end main  -->
+    <div class="row">
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Line chart</h4>
+                    <canvas id="lineChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Bar chart</h4>
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2022. All rights reserved. Made With Love By ACHRAF ASSILA</span>
+            </div>
+        </footer>
+        <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- Custom js for this page-->
     <?php require_once './includes/footer.php' ?>
-<?php } else {
+    <script src="./public/js/chart.js"></script>
+
+<?php else :
     header('Location: ./login.php');
-} ?>
+    exit();
+endif ?>

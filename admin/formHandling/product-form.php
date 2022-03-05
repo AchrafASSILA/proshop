@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
     $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
     $price = filter_var($_POST['price']);
     $stock = filter_var($_POST['stock'], FILTER_SANITIZE_NUMBER_INT);
-    $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
+    $description = $_POST['description'];
     $category = filter_var($_POST['category'], FILTER_SANITIZE_NUMBER_INT);
     // get image data 
     $image_name = $_FILES['image']['name'];

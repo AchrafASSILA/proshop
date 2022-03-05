@@ -28,6 +28,8 @@ class Category extends Db
         $categories = $statement->fetchAll(PDO::FETCH_OBJ);
         return $categories;
     }
+
+    // get category by name 
     public function getCategoryByName($name)
     {
         $categoryId = '';
@@ -37,6 +39,7 @@ class Category extends Db
         $categoryId = $statement->fetch(PDO::FETCH_OBJ);
         return $categoryId;
     }
+    // get category by id 
     public function getCategoryById($id)
     {
         $categoryName = '';
@@ -45,5 +48,12 @@ class Category extends Db
         $statement->execute([$id]);
         $categoryName = $statement->fetch(PDO::FETCH_OBJ);
         return $categoryName;
+    }
+    // delete category 
+    public function deleteCategory($id)
+    {
+        $sql = 'DELETE FROM categories WHERE id = ?';
+        $statement = $this->connect()->prepare($sql);
+        $statement->execute([$id]);
     }
 }

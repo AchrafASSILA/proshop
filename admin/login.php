@@ -1,112 +1,97 @@
 <?php session_start();
-if (isset($_SESSION['admin_username'])) {
+if (isset($_SESSION['admin_username'])) :
     header('Location: ./index.php');
-} else { ?>
-    <!DOCTYPE HTML>
+else :  ?>
+    <!DOCTYPE html>
     <html lang="en">
 
     <head>
+        <!-- Required meta tags -->
         <meta charset="utf-8">
-        <meta http-equiv="pragma" content="no-cache" />
-        <meta http-equiv="cache-control" content="max-age=604800" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <title>GreatKart | One of the Biggest Online Shopping Platform</title>
-
-        <link href="../public/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
-
-        <!-- jQuery -->
-        <script src="../public/js/jquery-2.0.0.min.js" type="text/javascript"></script>
-
-        <!-- Bootstrap4 files-->
-        <script src="../public/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-        <link href="../public/css/bootstrap.css" rel="stylesheet" type="text/css" />
-
-        <!-- Font awesome 5 -->
-        <link href="../public/fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet">
-
-        <!-- custom style -->
-        <link href="../public/css/ui.css" rel="stylesheet" type="text/css" />
-        <link href="../public/css/responsive.css" rel="stylesheet" media="only screen and (max-width: 1200px)" />
-
-        <!-- custom javascript -->
-        <script src="../public/js/script.js" type="text/javascript"></script>
-
-        <script type="text/javascript">
-            /// some script
-
-            // jquery ready start
-            $(document).ready(function() {
-                // jQuery code
-
-            });
-            // jquery end
-        </script>
-
+        <title>Star Admin2 </title>
+        <!-- plugins:css -->
+        <link rel="stylesheet" href="./public/vendors/feather/feather.css">
+        <link rel="stylesheet" href="./public/vendors/mdi/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="./public/vendors/ti-icons/css/themify-icons.css">
+        <link rel="stylesheet" href="./public/vendors/typicons/typicons.css">
+        <link rel="stylesheet" href="./public/vendors/simple-line-icons/css/simple-line-icons.css">
+        <link rel="stylesheet" href="./public/vendors/css/vendor.bundle.base.css">
+        <!-- endinject -->
+        <!-- Plugin css for this page -->
+        <!-- End plugin css for this page -->
+        <!-- inject:css -->
+        <link rel="stylesheet" href="./public/css/vertical-layout-light/style.css">
+        <!-- endinject -->
+        <link rel="shortcut icon" href="./public/images/favicon.png" />
     </head>
 
     <body>
-
-
-
-
-
-
-        <!-- ========================= SECTION CONTENT ========================= -->
-        <section class="section-conten padding-y" style="min-height:84vh">
-
-            <!-- ============================ COMPONENT LOGIN   ================================= -->
-            <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
-                <div class="card-body">
-                    <h4 class="card-title mb-4">Sign in</h4>
-                    <form action="./formHandling/login-form.php" method="post">
-                        <div class="form-group">
-                            <input type="text" name="username" class="form-control" placeholder="Username Address">
-                        </div> <!-- form-group// -->
-                        <div class="form-group">
-                            <input type="password" name="password" class="form-control" placeholder="Password">
-                            <?php if (isset($_GET['error'])) { ?>
-                                <span style="color: red;font-weight:bold;;text-align:center;display:block;"><?= $_GET['error'] ?></span>
-                            <?php } ?>
-                        </div> <!-- form-group// -->
-
-                        <!-- <div class="form-group">
-                        <a href="#" class="float-right">Forgot password?</a>
-
-                    </div> form-group form-check .// -->
-                        <div class="form-group">
-                            <button type="submit" name="submit" class="btn btn-primary btn-block"> Login </button>
-                        </div> <!-- form-group// -->
-                    </form>
-                </div> <!-- card-body.// -->
-            </div> <!-- card .// -->
-
-            <!-- <p class="text-center mt-4">Don't have account? <a href="#">Sign up</a></p> -->
-            <br><br>
-            <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
-
-
-        </section>
-        <!-- ========================= SECTION CONTENT END// ========================= -->
-
-
-        <!-- ========================= FOOTER ========================= -->
-        <!-- <footer class="section-footer border-top padding-y">
-        <div class="container">
-            <p class="float-md-right">
-                &copy Copyright 2019 All rights reserved
-            </p>
-            <p>
-                <a href="#">Terms and conditions</a>
-            </p>
+        <div class="container-scroller">
+            <div class="container-fluid page-body-wrapper full-page-wrapper">
+                <div class="content-wrapper d-flex align-items-center auth px-0">
+                    <div class="row w-100 mx-0">
+                        <div class="col-lg-4 mx-auto">
+                            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                                <div class="brand-logo">
+                                    <img src="./public/images/logo.svg" alt="logo">
+                                </div>
+                                <h4>Hello! let's get started</h4>
+                                <h6 class="fw-light">Sign in to continue.</h6>
+                                <form class="pt-3" action="./formHandling/login-form.php" method="post">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-lg" name="username" id="username" placeholder="Username">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="password" class="form-control form-control-lg" id="password" placeholder="Password">
+                                        <?php if (isset($_GET['error'])) { ?>
+                                            <span style="color: red;font-weight:bold;;text-align:center;display:block;"><?= $_GET['error'] ?></span>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="mt-3">
+                                        <button type="submit" name="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"> Login</button>
+                                    </div>
+                                    <!-- <div class="my-2 d-flex justify-content-between align-items-center">
+                                        <div class="form-check">
+                                            <label class="form-check-label text-muted">
+                                                <input type="checkbox" class="form-check-input">
+                                                Keep me signed in
+                                            </label>
+                                        </div>
+                                        <a href="#" class="auth-link text-black">Forgot password?</a>
+                                    </div>
+                                    <div class="mb-2">
+                                        <button type="button" class="btn btn-block btn-facebook auth-form-btn">
+                                            <i class="ti-facebook me-2"></i>Connect using facebook
+                                        </button>
+                                    </div>
+                                    <div class="text-center mt-4 fw-light">
+                                        Don't have an account? <a href="register.html" class="text-primary">Create</a>
+                                    </div> -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+            </div>
+            <!-- page-body-wrapper ends -->
         </div>
-        
-    </footer> -->
-        <!-- ========================= FOOTER END // ========================= -->
-
-
-
+        <!-- container-scroller -->
+        <!-- plugins:js -->
+        <script src="./public/vendors/js/vendor.bundle.base.js"></script>
+        <!-- endinject -->
+        <!-- Plugin js for this page -->
+        <script src="./public/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+        <!-- End plugin js for this page -->
+        <!-- inject:js -->
+        <script src="./public/js/off-canvas.js"></script>
+        <script src="./public/js/hoverable-collapse.js"></script>
+        <script src="./public/js/template.js"></script>
+        <script src="./public/js/settings.js"></script>
+        <script src="./public/js/todolist.js"></script>
+        <!-- endinject -->
     </body>
 
     </html>
-<?php } ?>
+<?php endif; ?>

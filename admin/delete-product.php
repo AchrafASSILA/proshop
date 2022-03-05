@@ -1,7 +1,7 @@
 <?php require_once './autoload.class.php' ?>
 <!-- check if there valid id in adresse libk  -->
-<?php if (!isset($_GET['id']) || empty($_GET['id'])) header('Location: ./index.php') ?>
 <?php
+// if (!isset($_GET['id']) || empty($_GET['id'])) header('Location: ./index.php')
 $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
 
 // instanciated 
@@ -13,7 +13,7 @@ $product = $obj->getSingleProduct($id);
 // check if the product in db 
 if ($product) {
     $obj->deleteProduct($id);
-    header('Location: ./index.php');
+    header('Location: ./prodcuts.php');
 } else {
-    header('Location: ./index.php');
+    header('Location: ./products.php');
 }
