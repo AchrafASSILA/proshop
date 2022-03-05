@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +41,7 @@
                     <a class="navbar-brand brand-logo-mini" href="index.html">
                         <img src="./public/images/logo-mini.svg" alt="logo" />
                     </a>
-                    <?php print_r($_SESSION); ?>
+
                 </div>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-top">
@@ -114,7 +113,7 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="./index.php">
                             <i class="mdi mdi-grid-large menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
@@ -142,6 +141,19 @@
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="./create-category.php">Add Category</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="./categories.php">Catgories List</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#orders">
+                            <i class="menu-icon mdi mdi-cart"></i>
+                            <span class="menu-title">Orders</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="orders">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="">Cash On Delivery</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="">Paypal Paid</a></li>
                             </ul>
                         </div>
                     </li>

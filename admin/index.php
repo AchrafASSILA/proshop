@@ -1,4 +1,5 @@
-<?php if (($_SESSION['admin_username'])) : ?>
+<?php session_start(); ?>
+<?php if (isset($_SESSION['admin_username'])) : ?>
     <?php require_once './includes/header.php' ?>
     <!-- partial -->
     <div class="col-lg-12 grid-margin stretch-card">
@@ -206,5 +207,4 @@
 
 <?php else :
     header('Location: ./login.php');
-    exit();
 endif ?>

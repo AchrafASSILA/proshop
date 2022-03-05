@@ -1,6 +1,7 @@
 <?php session_start();
 if (isset($_SESSION['admin_username'])) :
     header('Location: ./index.php');
+    exit();
 else :  ?>
     <!DOCTYPE html>
     <html lang="en">

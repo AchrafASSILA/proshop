@@ -1,7 +1,13 @@
 <?php require_once './includes/header.php' ?>
 <?php require './autoload.classes.php'; ?>
 
-
+<!-- instanciate order  -->
+<?php $order = new Order() ?>
+<!-- get all order items  -->
+<?php $order_items = $order->getOrderItems() ?>
+<!-- total  -->
+<?php $total = 0 ?>
+<?php $tax = 0 ?>
 <header class="section-header">
 	<nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
 		<div class="container">
@@ -40,7 +46,7 @@
 			<div class="row align-items-center">
 				<div class="col-lg-2 col-md-3 col-6">
 					<a href="./" class="brand-wrap">
-						<img class="logo" src="./images/logo.png">
+						<img class="logo" src="./public/images/logo.png">
 					</a> <!-- brand-wrap.// -->
 				</div>
 				<div class="col-lg col-sm col-md col-6 flex-grow-0">
@@ -58,32 +64,28 @@
 						</div>
 					</div> <!-- category-wrap.// -->
 				</div> <!-- col.// -->
-				<a href="./store.html" class="btn btn-outline-primary">Store</a>
+				<a href="./store.php" class="btn btn-outline-primary">Store</a>
 				<div class="col-lg  col-md-6 col-sm-12 col">
-					<form action="#" class="search">
-						<div class="input-group w-100">
-							<input type="text" class="form-control" style="width:60%;" placeholder="Search">
 
-							<div class="input-group-append">
-								<button class="btn btn-primary" type="submit">
-									<i class="fa fa-search"></i>
-								</button>
-							</div>
-						</div>
-					</form> <!-- search-wrap .end// -->
 				</div> <!-- col.// -->
 				<div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
 					<div class="d-flex justify-content-end mb-3 mb-lg-0">
 						<div class="widget-header">
-							<small class="title text-muted">Welcome guest!</small>
+							<?php if (isset($_SESSION['customer_username']) && isset($_SESSION['customer_id'])) { ?>
+								<small class="title text-muted">Welcome <?= $_SESSION['customer_username'] ?>!</small>
+							<?php } ?>
 							<div>
-								<a href="./signin.html">Sign in</a> <span class="dark-transp"> | </span>
-								<a href="./register.html"> Register</a>
+								<?php if (isset($_SESSION['customer_username']) && isset($_SESSION['customer_id'])) { ?>
+									<a href="./logout.php"> Logout</a>
+								<?php } else { ?>
+									<a href="./login.php">Sign in</a> <span class="dark-transp"> | </span>
+									<a href="./login.php"> Register</a>
+								<?php } ?>
 							</div>
 						</div>
-						<a href="./cart.html" class="widget-header pl-3 ml-3">
+						<a href="./cart.php" class="widget-header pl-3 ml-3">
 							<div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
-							<span class="badge badge-pill badge-danger notify">0</span>
+							<span class="badge badge-pill badge-danger notify"><?= count($order_items) ?></span>
 						</a>
 					</div> <!-- widgets-wrap.// -->
 				</div> <!-- col.// -->
@@ -108,72 +110,28 @@
 					<div class="card-body">
 						<h4 class="card-title mb-4">Review cart</h4>
 						<div class="row">
-							<div class="col-md-6">
-								<figure class="itemside  mb-4">
-									<div class="aside"><img src="./images/items/1.jpg" class="border img-sm"></div>
-									<figcaption class="info">
-										<p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
-										<span class="text-muted">2x = $560 </span>
-									</figcaption>
-								</figure>
-							</div> <!-- col.// -->
-							<div class="col-md-6">
-								<figure class="itemside  mb-4">
-									<div class="aside"><img src="./images/items/2.jpg" class="border img-sm"></div>
-									<figcaption class="info">
-										<p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
-										<span class="text-muted">2x = $560 </span>
-									</figcaption>
-								</figure>
-							</div> <!-- col.// -->
-							<div class="col-md-6">
-								<figure class="itemside mb-4">
-									<div class="aside"><img src="./images/items/3.jpg" class="border img-sm"></div>
-									<figcaption class="info">
-										<p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
-										<span class="text-muted">2x = $560 </span>
-									</figcaption>
-								</figure>
-							</div> <!-- col.// -->
-							<div class="col-md-6">
-								<figure class="itemside  mb-4">
-									<div class="aside"><img src="./images/items/4.jpg" class="border img-sm"></div>
-									<figcaption class="info">
-										<p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
-										<span class="text-muted">2x = $560 </span>
-									</figcaption>
-								</figure>
-							</div> <!-- col.// -->
+							<?php foreach ($order_items as $order_item) : ?>
+								<?php $product_obj = new Product() ?>
+								<?php $product = $product_obj->getSingleProduct($order_item->product) ?>
+								<?php $total += ($order_item->quantity * $product->price) ?>
+
+								<div class="col-md-6">
+									<figure class="itemside  mb-4">
+										<div class="aside"><img src="<?= $product->image ?>" class="border img-sm"></div>
+										<figcaption class="info">
+											<p><?= $product->name ?> </p>
+											<span class="text-muted"><?= $order_item->quantity ?>x = $<?= $order_item->quantity * $product->price ?> </span>
+										</figcaption>
+									</figure>
+								</div> <!-- col.// -->
+
+							<?php endforeach; ?>
 						</div> <!-- row.// -->
 					</div> <!-- card-body.// -->
 				</article> <!-- card.// -->
 
 
-				<!-- <article class="card mb-4">
-					<div class="card-body">
-						<h4 class="card-title mb-4">Contact info</h4>
-						<form action="">
-							<div class="row">
-								<div class="form-group col-sm-6">
-									<label>Frst name</label>
-									<input type="text" placeholder="Type here" class="form-control">
-								</div>
-								<div class="form-group col-sm-6">
-									<label>Last name</label>
-									<input type="text" placeholder="Type here" class="form-control">
-								</div>
-								<div class="form-group col-sm-6">
-									<label>Phone</label>
-									<input type="text" value="+998" class="form-control">
-								</div>
-								<div class="form-group col-sm-6">
-									<label>Email</label>
-									<input type="email" placeholder="example@gmail.com" class="form-control">
-								</div>
-							</div> 
-						</form>
-					</div> 
-				</article>  -->
+
 
 
 				<article class="card mb-4">
@@ -223,7 +181,7 @@
 
 
 				<article class="accordion" id="accordion_pay">
-					<div class="card">
+					<!-- <div class="card">
 						<header class="card-header">
 							<img src="./public/images/misc/payment-paypal.png" class="float-right" height="24">
 							<label class="form-check collapsed" data-toggle="collapse" data-target="#pay_paynet">
@@ -240,28 +198,28 @@
 									<a href="#"><img src="./public/images/misc/btn-paypal.png" height="32"></a>
 									<br><br>
 								</p>
-							</div> <!-- card body .// -->
-						</div> <!-- collapse .// -->
-					</div> <!-- card.// -->
+							</div> 
+						</div> 
+					</div>  -->
 					<div class="card">
 						<header class="card-header">
-							<img src="./images/misc/payment-card.png" class="float-right" height="24">
+							<img src="./public/images/misc/payment-card.png" class="float-right" height="24">
 							<label class="form-check" data-toggle="collapse" data-target="#pay_payme">
-								<input class="form-check-input" name="payment-option" type="radio" value="option2">
-								<h6 class="form-check-label"> Credit Card </h6>
+								<input class="form-check-input" name="payment-option" type="radio" value="Cash_on_delivery">
+								<h6 class="form-check-label"> Cash on delivery </h6>
 							</label>
 						</header>
-						<div id="pay_payme" class="collapse" data-parent="#accordion_pay">
-							<div class="card-body">
-								<p class="alert alert-success">Some information or instruction</p>
-								<form class="form-inline">
+						<!-- <div id="pay_payme" class="collapse" data-parent="#accordion_pay"> -->
+						<!-- <div class="card-body"> -->
+						<!-- <p class="alert alert-success">Some information or instruction</p> -->
+						<!-- <form class="form-inline">
 									<input type="text" class="form-control mr-2" placeholder="xxxx-xxxx-xxxx-xxxx" name="">
 									<input type="text" class="form-control mr-2" style="width: 100px" placeholder="dd/yy" name="">
 									<input type="number" maxlength="3" class="form-control mr-2" style="width: 100px" placeholder="cvc" name="">
 									<button class="btn btn btn-success">Button</button>
-								</form>
-							</div> <!-- card body .// -->
-						</div> <!-- collapse .// -->
+								</form> -->
+						<!-- </div> card body .// -->
+						<!-- </div> collapse .// -->
 					</div> <!-- card.// -->
 
 				</article>
@@ -273,19 +231,19 @@
 					<div class="card-body">
 						<dl class="dlist-align">
 							<dt>Total price:</dt>
-							<dd class="text-right">$69.97</dd>
+							<dd class="text-right">$<?= $total ?></dd>
 						</dl>
 						<dl class="dlist-align">
 							<dt>Tax:</dt>
-							<dd class="text-right"> $10.00</dd>
+							<dd class="text-right"> $0.00</dd>
 						</dl>
 						<dl class="dlist-align">
 							<dt>Total:</dt>
-							<dd class="text-right text-dark b"><strong>$59.97</strong></dd>
+							<dd class="text-right text-dark b"><strong>$<?= $total + $tax ?></strong></dd>
 						</dl>
 						<hr>
 						<p class="text-center mb-3">
-							<img src="./images/misc/payments.png" height="26">
+							<img src="./public/images/misc/payments.png" height="26">
 						</p>
 						<a href="./place-order.html" class="btn btn-primary btn-block"> Place Order </a>
 
