@@ -94,7 +94,7 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
                     <div class="d-flex justify-content-end mb-3 mb-lg-0">
                         <div class="widget-header">
                             <?php if (isset($_SESSION['customer_username']) && isset($_SESSION['customer_id'])) { ?>
-                                <small class="title text-muted">Welcome <?= $_SESSION['customer_username'] ?>!</small>
+                                <a href="./account.php" class="title text-muted">Welcome <?= $_SESSION['customer_username'] ?>!</a>
                             <?php } ?>
                             <div>
                                 <?php if (isset($_SESSION['customer_username']) && isset($_SESSION['customer_id'])) { ?>

@@ -7,6 +7,10 @@
 <!-- total  -->
 <?php $total = 0 ?>
 <?php $tax = 0 ?>
+
+<!-- get shipping adress  -->
+<?php $shipping = new Shipping(); ?>
+<?php $adress = $shipping->getShippingAdress() ?>
 <section class="header-main border-bottom">
     <div class="container">
         <div class="row align-items-center">
@@ -38,7 +42,7 @@
                 <div class="d-flex justify-content-end mb-3 mb-lg-0">
                     <div class="widget-header">
                         <?php if (isset($_SESSION['customer_username']) && isset($_SESSION['customer_id'])) { ?>
-                            <small class="title text-muted">Welcome <?= $_SESSION['customer_username'] ?>!</small>
+                            <a href="./account.php" class="title text-muted">Welcome <?= $_SESSION['customer_username'] ?>!</a>
                         <?php } ?>
                         <div>
                             <?php if (isset($_SESSION['customer_username']) && isset($_SESSION['customer_id'])) { ?>
@@ -157,7 +161,11 @@
                         <p class="text-center mb-3">
                             <img src="./public/images/misc/payments.png" height="26">
                         </p>
-                        <a href="./place-order.php" class="btn btn-primary btn-block"> Checkout </a>
+                        <?php if ($adress) : ?>
+                            <a href="./create-adress.php" class="btn btn-primary btn-block"> Checkout </a>
+                        <?php else : ?>
+                            <a href="./place-order.php" class="btn btn-primary btn-block"> Checkout </a>
+                        <?php endif; ?>
                         <a href="./store.php" class="btn btn-light btn-block">Continue Shopping</a>
                     </div> <!-- card-body.// -->
                 </div> <!-- card.// -->

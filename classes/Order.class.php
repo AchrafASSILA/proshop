@@ -84,4 +84,20 @@ class Order extends Db
         $statement = $this->connect()->prepare($sql);
         $statement->execute([$current_product, $order->id, 1, 'y/m/d']);
     }
+
+    // get complete and delevred and payed orders 
+    public function getCompletePayedOrders()
+    {
+        $month = [];
+        $ordersNumber = [];
+        $sql = 'SELECT MONTHNAME(date_ordered) month , count(id) orders FROM orders WHERE complete = 1 GROUP BY month';
+        $statement = $this->connect()->prepare($sql);
+        $statement->execute([]);
+        $orders = $statement->fetchAll(PDO::FETCH_OBJ);
+        foreach ($orders as $order) {
+            array_push($month, $order->month);
+            array_push($ordersNumber, $order->orders);
+        }
+        return [json_encode($month), json_encode($ordersNumber)];
+    }
 }

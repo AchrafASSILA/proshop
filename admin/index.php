@@ -1,7 +1,11 @@
 <?php session_start(); ?>
 <?php if (isset($_SESSION['admin_username'])) : ?>
     <?php require_once './includes/header.php' ?>
+    <?php require_once './autoload.class.php' ?>
     <!-- partial -->
+    <?php $orders = new Order() ?>
+    <?php $data = $orders->getCompletePayedOrders() ?>
+    <?php print_r($data[1]) ?>
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -187,6 +191,14 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Bar chart</h4>
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
+            </div>
+        </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
@@ -203,7 +215,9 @@
     <!-- container-scroller -->
     <!-- Custom js for this page-->
     <?php require_once './includes/footer.php' ?>
-    <script src="./public/js/chart.js"></script>
+
+    <!-- <script src="./public/js/chart.js"></script> -->
+
 
 <?php else :
     header('Location: ./login.php');
