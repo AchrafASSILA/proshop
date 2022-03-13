@@ -152,8 +152,8 @@
                         </a>
                         <div class="collapse" id="orders">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="">Cash On Delivery</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="">Paypal Paid</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="./orders.php">Cash On Delivery</a></li>
+
                             </ul>
                         </div>
                     </li>

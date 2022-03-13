@@ -4,7 +4,6 @@
 require_once __DIR__ . './db.class.php';
 class Order extends Db
 {
-    // select orderitems.order_id  ,orderitems.quantity, products.name from orderitems inner join orders on orders.id = orderitems.order_id AND orders.customer = 2 inner join products on products.id = orderitems.product;
 
     // get none completed order related to customer 
     public function getOrder()
@@ -99,5 +98,27 @@ class Order extends Db
             array_push($ordersNumber, $order->orders);
         }
         return [json_encode($month), json_encode($ordersNumber)];
+    }
+
+    // close order 
+    public function completeOrder($id)
+    {
+        if (isset($_SESSION['customer_id'])) {
+            $customer_id = $_SESSION['customer_id'];
+            $sql = 'UPDATE orders SET complete = 1 where complete = 0 and customer = ? and id = ?';
+            $statement = $this->connect()->prepare($sql);
+            $statement->execute([$customer_id, $id]);
+        }
+    }
+
+    // get complete orders that need to delevred 
+    public function getOrdersNeedToDelevred()
+    {
+        $orders = '';
+        $sql = 'SELECT  ot.product , ot.quantity , orders.customer from orderitems ot  inner join orders on orders.id = ot.order_id where orders.complete = ? and orders.is_delevred = ?  ';
+        $statement = $this->connect()->prepare($sql);
+        $statement->execute([1, 0]);
+        $orders = $statement->fetchAll(PDO::FETCH_OBJ);
+        return $orders;
     }
 }
