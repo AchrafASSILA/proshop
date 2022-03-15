@@ -1,5 +1,5 @@
+<?php require_once './includes/header.php' ?>
 <?php if (isset($_SESSION['customer_id'])) : ?>
-    <?php require_once './includes/header.php' ?>
     <?php require './autoload.classes.php'; ?>
     <!-- instanciate order  -->
     <?php $order = new Order() ?>
