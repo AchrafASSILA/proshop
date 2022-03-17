@@ -153,6 +153,7 @@
                         <div class="collapse" id="orders">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="./orders.php">Cash On Delivery</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="./orders.php">Delevred Products</a></li>
 
                             </ul>
                         </div>

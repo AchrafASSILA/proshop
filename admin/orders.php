@@ -59,9 +59,9 @@
                                     <?php $shipping = $adresse->getShippingAdress($order->customer) ?>
                                     <tr>
                                         <td>
-                                            <input type="checkbox" id="shipped" name="shipped" value="shipped">
-                                            <input type="hidden" name="order" value="<?= $order->order_id ?>">
-                                            <input type="hidden" name="product" value="<?= $order->product ?>">
+                                            <input type="checkbox" id="shipped" name="products[]" value="<?= $order->product ?>">
+                                            <!-- <input type="hidden" name="order" value="<?= $order->order_id ?>">
+                                            <input type="hidden" name="product" value="<?= $order->product ?>"> -->
                                         </td>
                                         <td class="py-1">
                                             <img src="<?php echo  '..\\' . $product->image ?>" alt="image" />
