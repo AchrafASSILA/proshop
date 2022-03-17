@@ -5,8 +5,11 @@
     <!-- partial -->
     <?php $orderObj = new Order() ?>
     <!-- get non delevred orders  -->
+    <!-- instanciate from customer  -->
+    <?php $productObj = new Product() ?>
+    <!-- instanciate from product  -->
+    <?php $userObj = new Authentication() ?>
     <?php $orders = $orderObj->getOrdersNeedToDelevred() ?>
-    <?php print_r($orders); ?>
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -19,41 +22,66 @@
                         <thead>
                             <tr>
                                 <th>
-                                    User
+                                    Product
                                 </th>
                                 <th>
-                                    First name
+                                    Product name
                                 </th>
                                 <th>
-                                    Progress
+                                    Price
                                 </th>
                                 <th>
-                                    Amount
+                                    Quantity
                                 </th>
                                 <th>
-                                    Deadline
+                                    Customer
+                                </th>
+                                <th>
+                                    Total
+                                </th>
+                                <th>
+                                    Adresse
+                                </th>
+                                <th>
+                                    Date Added
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $adresse = new Shipping() ?>
                             <?php foreach ($orders as $order) : ?>
+                                <?php $product = $productObj->getSingleProduct($order->product) ?>
+                                <?php $customer = $userObj->getSingleCustomer($order->customer) ?>
+                                <?php $shipping = $adresse->getShippingAdress($order->customer) ?>
+
                                 <tr>
                                     <td class="py-1">
-                                        <img src="./public/images/faces/face1.jpg" alt="image" />
+                                        <img src="<?php echo  '..\\' . $product->image ?>" alt="image" />
                                     </td>
                                     <td>
-                                        Herman Beck
+                                        <?= $product->name ?>
                                     </td>
                                     <td>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
+                                        $<?= $product->price ?>
                                     </td>
                                     <td>
-                                        $ 77.99
+                                        <?= $order->quantity ?>
                                     </td>
                                     <td>
-                                        May 15, 2015
+                                        <?= $customer->first_name . " " . $customer->last_name ?>
+                                    </td>
+                                    <td>
+                                        <?= $product->price * $order->quantity ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($shipping) : ?>
+                                            <?= $shipping[0]->adress  . " " . $shipping[0]->city  . " " . $shipping[0]->zip_code ?>
+                                        <?php else : ?>
+                                            don't have
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?= $order->date_added ?>
                                     </td>
                                 </tr>
 

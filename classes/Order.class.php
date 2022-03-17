@@ -115,7 +115,7 @@ class Order extends Db
     public function getOrdersNeedToDelevred()
     {
         $orders = '';
-        $sql = 'SELECT  ot.product , ot.quantity , orders.customer from orderitems ot  inner join orders on orders.id = ot.order_id where orders.complete = ? and orders.is_delevred = ?  ';
+        $sql = 'SELECT  ot.product , ot.quantity , orders.customer , ot.date_added from orderitems ot  inner join orders on orders.id = ot.order_id where orders.complete = ? and orders.is_delevred = ?  ';
         $statement = $this->connect()->prepare($sql);
         $statement->execute([1, 0]);
         $orders = $statement->fetchAll(PDO::FETCH_OBJ);

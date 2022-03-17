@@ -20,6 +20,16 @@ class Authentication extends Db
         $customer = $statement->fetch(PDO::FETCH_OBJ);
         return $customer;
     }
+    // get customer 
+    public function getSingleCustomer($id)
+    {
+        $customer = '';
+        $sql = 'SELECT * FROM customers WHERE id = ? ';
+        $statement = $this->connect()->prepare($sql);
+        $statement->execute([$id]);
+        $customer = $statement->fetch(PDO::FETCH_OBJ);
+        return $customer;
+    }
 
     // create customer 
     public function createCustomer($first_name, $last_name, $username, $password)
