@@ -15,7 +15,7 @@
     <?php $categories = $cat->getCategories(); ?>
     <!-- get shipping adress  -->
     <?php $shipping = new Shipping(); ?>
-    <?php $adress = $shipping->getShippingAdress() ?>
+    <?php $adress = $shipping->getShippingAdress(null) ?>
     <section class="header-main border-bottom">
         <div class="container">
             <div class="row align-items-center">

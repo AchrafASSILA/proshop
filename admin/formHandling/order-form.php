@@ -52,6 +52,8 @@ if (isset($_POST['increment'])) {
         header('Location: /proshop/login.php');
     }
     // header('Location: /proshop/cart.php');
+} elseif (isset($_POST['UpdateShipped'])) {
+    print_r($_POST);
 } else {
     header('Location: /proshop/cart.php');
 }
