@@ -8,6 +8,7 @@ class Order extends Db
     // get none completed order related to customer 
     public function getOrder()
     {
+        session_start();
         $order = [];
         if (isset($_SESSION['customer_id'])) {
             $customer = $_SESSION['customer_id'];

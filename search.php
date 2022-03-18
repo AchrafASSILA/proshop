@@ -1,12 +1,17 @@
 <?php
 
-require_once './classes/db.class.php';
+
+require_once './autoload.classes.php';
 $db = new Db();
 $sql = "select  * from products where name like '%" . $_POST['name']  . "%'";
 $statement = $db->connect()->prepare($sql);
 $statement->execute([]);
 $products = $statement->fetchAll(PDO::FETCH_OBJ);
 ?>
+<!-- instanciate order  -->
+<?php $order = new Order() ?>
+<!-- get all order items  -->
+<?php $order_items = json_decode(json_encode($order->getOrderItems()), true) ?>
 <main class="col-md-9" id="product_row" style="max-width: 100%;">
 
     <header class="border-bottom mb-4 pb-3">
@@ -33,7 +38,14 @@ $products = $statement->fetchAll(PDO::FETCH_OBJ);
                                 <del class="price-old">$80</del>
                             </div> <!-- price-wrap.// -->
                         </div>
-                        <a href="#" class="btn btn-block btn-primary">Add to cart </a>
+                        <?php if (in_array($product->id, array_column($order_items, 'product'))) : ?>
+                            <button class="btn btn-block btn-success" onclick="alert('product already add')">Added to cart </button>
+                        <?php else : ?>
+                            <form action="./admin/formHandling/order-form.php" method="post">
+                                <input type="hidden" name="product_id" value="<?= $product->id ?>">
+                                <button type="submit" name="add" class="btn btn-block btn-primary"> Add to cart</button>
+                            </form>
+                        <?php endif; ?>
                     </figcaption>
                 </figure>
             </div> <!-- col.// -->
@@ -41,14 +53,6 @@ $products = $statement->fetchAll(PDO::FETCH_OBJ);
     </div> <!-- row end.// -->
 
 
-    <nav class="mt-4" aria-label="Page navigation sample">
-        <ul class="pagination">
-            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-    </nav>
+
 
 </main> <!-- col.// -->

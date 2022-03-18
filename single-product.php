@@ -13,7 +13,16 @@ $product = $obj->getSingleProduct($id);
 
 // check if the product in db 
 if ($product) {
+
 ?>
+    <!-- instanciate order  -->
+    <?php $order = new Order() ?>
+    <!-- get all order items  -->
+    <?php $order_items = json_decode(json_encode($order->getOrderItems()), true) ?>
+    <!-- instanciate from category view -->
+    <?php $cat = new Category(); ?>
+    <!-- get all categories from category view  -->
+    <?php $categories = $cat->getCategories(); ?>
     <header class="section-header">
         <nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
             <div class="container">
@@ -61,17 +70,15 @@ if ($product) {
                                 <i class="fa fa-bars"></i> All category
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Machinery / Mechanical Parts / Tools </a>
-                                <a class="dropdown-item" href="#">Consumer Electronics / Home Appliances </a>
-                                <a class="dropdown-item" href="#">Auto / Transportation</a>
-                                <a class="dropdown-item" href="#">Apparel / Textiles / Timepieces </a>
-                                <a class="dropdown-item" href="#">Home & Garden / Construction / Lights </a>
-                                <a class="dropdown-item" href="#">Beauty & Personal Care / Health </a>
+                                <a class="dropdown-item" href="store.php">all</a>
+                                <?php foreach ($categories as $category) : ?>
+                                    <a class="dropdown-item" href="store.php?category=<?php echo $category->name ?>"><?php echo $category->name ?> </a>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                         <!-- category-wrap.// -->
                     </div> <!-- col.// -->
-                    <a href="./store.html" class="btn btn-outline-primary">Store</a>
+                    <a href="./store.php" class="btn btn-outline-primary">Store</a>
                     <div class="col-lg  col-md-6 col-sm-12 col">
                         <!-- <form action="#" class="search">
                         <div class="input-group w-100">
@@ -88,15 +95,21 @@ if ($product) {
                     <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
                         <div class="d-flex justify-content-end mb-3 mb-lg-0">
                             <div class="widget-header">
-                                <small class="title text-muted">Welcome guest!</small>
+                                <?php if (isset($_SESSION['customer_username']) && isset($_SESSION['customer_id'])) { ?>
+                                    <a href="./account.php" class="title text-muted">Welcome <?= $_SESSION['customer_username'] ?>!</a>
+                                <?php } ?>
                                 <div>
-                                    <a href="./signin.html">Sign in</a> <span class="dark-transp"> | </span>
-                                    <a href="./register.html"> Register</a>
+                                    <?php if (isset($_SESSION['customer_username']) && isset($_SESSION['customer_id'])) { ?>
+                                        <a href="./logout.php"> Logout</a>
+                                    <?php } else { ?>
+                                        <a href="./login.php">Sign in</a> <span class="dark-transp"> | </span>
+                                        <a href="./login.php"> Register</a>
+                                    <?php } ?>
                                 </div>
                             </div>
-                            <a href="#" class="widget-header pl-3 ml-3">
+                            <a href="./cart.php" class="widget-header pl-3 ml-3">
                                 <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
-                                <span class="badge badge-pill badge-danger notify">0</span>
+                                <span class="badge badge-pill badge-danger notify"><?= count($order_items) ?></span>
                             </a>
                         </div> <!-- widgets-wrap.// -->
                     </div> <!-- col.// -->
@@ -174,8 +187,14 @@ if ($product) {
                                     </div>
                                 </div>
                             </div> <!-- row.// -->
-                            <hr>
-                            <a href="./product-detail.html" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i> </a>
+                            <hr><?php if (in_array($product->id, array_column($order_items, 'product'))) : ?>
+                                <button class="btn  btn-success" onclick="alert('product already add')">Added to cart </button>
+                            <?php else : ?>
+                                <form action="./admin/formHandling/order-form.php" method="post">
+                                    <input type="hidden" name="product_id" value="<?= $product->id ?>">
+                                    <button type="submit" name="add" class="btn  btn-primary"> Add to cart</button>
+                                </form>
+                            <?php endif; ?>
                         </article> <!-- product-info-aside .// -->
                     </main> <!-- col.// -->
                 </div> <!-- row.// -->
@@ -192,7 +211,7 @@ if ($product) {
 
                     </header>
 
-                    <article class="box mb-3">
+                    <!-- <article class="box mb-3">
                         <div class="icontext w-100">
                             <img src="./public/images/avatars/avatar1.jpg" class="img-xs icon rounded-circle">
                             <div class="text">
@@ -200,15 +219,15 @@ if ($product) {
                                 <h6 class="mb-1">Mike John </h6>
 
                             </div>
-                        </div> <!-- icontext.// -->
-                        <div class="mt-3">
-                            <p>
-                                Dummy comment Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip
-                            </p>
-                        </div>
-                    </article>
+                        </div> 
+                    <div class="mt-3">
+                        <p>
+                            Dummy comment Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        </p>
+                    </div>
+                    </article> -->
 
 
 

@@ -163,8 +163,11 @@
                             <p class="text-center mb-3">
                                 <img src="./public/images/misc/payments.png" height="26">
                             </p>
+
+
                             <?php if ($adress) : ?>
                                 <a href="./place-order.php" class="btn btn-primary btn-block"> Checkout </a>
+
                             <?php else : ?>
                                 <a href="./create-adress.php" class="btn btn-primary btn-block"> Checkout </a>
                             <?php endif; ?>

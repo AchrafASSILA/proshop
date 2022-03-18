@@ -26,15 +26,12 @@ class Shipping extends Db
         return $adress;
     }
     //create shipping adress if not exists
-    // public function createShippingAdress()
-    // {
-    //     $adress = '';
-    //     $customer_id = $_SESSION['customer_id'];
-    //     $sql = 'SELECT * FROM shippingadress WHERE customer = ?';
-    //     $statement = $this->connect()->prepare($sql);
-    //     $statement->execute([$customer_id]);
-    //     $adress = $statement->fetchAll(PDO::FETCH_OBJ);
-    //     return $customer_id;
-    // }
-
+    public function createShippingAdress($adress, $city, $state, $zipcode, $order)
+    {
+        $adress = '';
+        $customer_id = $_SESSION['customer_id'];
+        $sql = 'INSERT INTO shippingadress (customer,order_id,adress,city,state,zip_code) VALUES(?,?,?,?,?,?)';
+        $statement = $this->connect()->prepare($sql);
+        $statement->execute([$customer_id, $order, $adress, $city, $state, $zipcode]);
+    }
 }
