@@ -88,15 +88,15 @@
                 <aside class="col-md-3">
                     <!--   SIDEBAR   -->
                     <ul class="list-group">
-                        <a class="list-group-item active" href="#"> My order history </a>
-                        <a class="list-group-item" href="#"> Transactions </a>
+                        <a class="list-group-item active" href="#"> Profile</a>
+                        <!-- <a class="list-group-item" href="#"> Transactions </a>
                         <a class="list-group-item" href="#"> Return and refunds </a>
                         <a class="list-group-item" href="#">Settings </a>
                         <a class="list-group-item" href="#"> My Selling Items </a>
-                        <a class="list-group-item" href="#"> Received orders </a>
+                        <a class="list-group-item" href="#"> Received orders </a> -->
                     </ul>
                     <br>
-                    <a class="btn btn-light btn-block" href="#"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a>
+                    <a class="btn btn-light btn-block" href="./logout.php"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a>
                     <!--   SIDEBAR .//END   -->
                 </aside>
                 <main class="col-md-9">
@@ -132,7 +132,7 @@
                             <table class="table table-hover">
                                 <tr>
                                     <td width="65">
-                                        <img src="../images/items/1.jpg" class="img-xs border">
+                                        <img src="./public/images/items/1.jpg" class="img-xs border">
                                     </td>
                                     <td>
                                         <p class="title mb-0">Product name goes here </p>
@@ -143,7 +143,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <img src="../images/items/2.jpg" class="img-xs border">
+                                        <img src="./public/images/items/2.jpg" class="img-xs border">
                                     </td>
                                     <td>
                                         <p class="title mb-0">Another name goes here </p>
@@ -154,7 +154,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <img src="../images/items/3.jpg" class="img-xs border">
+                                        <img src="./public/images/items/3.jpg" class="img-xs border">
                                     </td>
                                     <td>
                                         <p class="title mb-0">The name of the product goes here </p>
@@ -165,10 +165,11 @@
                                 </tr>
                             </table>
                         </div> <!-- table-responsive .end// -->
-                    </article> <!-- order-group.// -->
+                    </article>
+                    <!-- order-group.// ->public/
                 </main>
             </div> <!-- row.// -->
-        </div>
+            </div>
 
 
     </section>

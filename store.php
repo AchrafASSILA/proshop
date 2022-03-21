@@ -300,7 +300,7 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
         $('#search_query').keypress(function() {
             $.ajax({
                 type: 'POST',
-                url: 'search.php',
+                url: './search/search.php',
                 data: {
                     name: $("#search_query").val(),
                     id: <?php echo $_SESSION['customer_id'] ?>,
@@ -316,7 +316,7 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
         $('#search-price ').click(function() {
             $.ajax({
                 type: 'POST',
-                url: 'search-price.php',
+                url: 'search/search-price.php',
                 data: {
                     first_option: $("#search-price-1").val(),
                     second_option: $("#search-price-2").val(),

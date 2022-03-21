@@ -1,7 +1,7 @@
 <?php
 
 
-require_once './autoload.classes.php';
+require_once '../autoload.classes.php';
 $db = new Db();
 $sql = "select  * from products where price between " . $_POST['first_option']  . " and " . $_POST['second_option'];
 $statement = $db->connect()->prepare($sql);

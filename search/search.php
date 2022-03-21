@@ -1,7 +1,7 @@
 <?php
 
 
-require_once './autoload.classes.php';
+require_once '../autoload.classes.php';
 $db = new Db();
 $sql = "select  * from products where name like '%" . $_POST['name']  . "%'";
 $statement = $db->connect()->prepare($sql);
