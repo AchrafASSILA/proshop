@@ -9,7 +9,7 @@
     <?php $productObj = new Product() ?>
     <!-- instanciate from product  -->
     <?php $userObj = new Authentication() ?>
-    <?php $orders = $orderObj->getOrdersNeedToDelevred() ?>
+    <?php $orders = $orderObj->getOrdersNeedToDelevredLimit() ?>
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">

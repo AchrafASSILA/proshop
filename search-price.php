@@ -3,7 +3,7 @@
 
 require_once './autoload.classes.php';
 $db = new Db();
-$sql = "select  * from products where name like '%" . $_POST['name']  . "%'";
+$sql = "select  * from products where price between " . $_POST['first_option']  . " and " . $_POST['second_option'];
 $statement = $db->connect()->prepare($sql);
 $statement->execute([]);
 $products = $statement->fetchAll(PDO::FETCH_OBJ);
@@ -15,7 +15,6 @@ $sql = 'SELECT product , quantity FROM orderitems INNER JOIN orders ON orders.id
 $statement = $db->connect()->prepare($sql);
 $statement->execute([0, $_POST['id']]);
 $order_items = $statement->fetchAll(PDO::FETCH_OBJ); ?>
-
 <main class="col-md-9" id="product_row" style="max-width: 100%;">
 
     <header class="border-bottom mb-4 pb-3">

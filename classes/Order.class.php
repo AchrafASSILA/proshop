@@ -113,6 +113,15 @@ class Order extends Db
     }
 
     // get complete orders that need to delevred 
+    public function getOrdersNeedToDelevredLimit()
+    {
+        $orders = '';
+        $sql = 'SELECT  ot.product , ot.quantity , ot.order_id , orders.customer , ot.date_added from orderitems ot  inner join orders on orders.id = ot.order_id where orders.complete = ? and orders.is_delevred = ?  limit 8';
+        $statement = $this->connect()->prepare($sql);
+        $statement->execute([1, 0]);
+        $orders = $statement->fetchAll(PDO::FETCH_OBJ);
+        return $orders;
+    }
     public function getOrdersNeedToDelevred()
     {
         $orders = '';

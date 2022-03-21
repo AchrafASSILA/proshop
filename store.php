@@ -205,7 +205,7 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
                                     <div class="form-group col-md-6">
                                         <label>Min</label>
                                         <!-- <input class="form-control" placeholder="$0" type="number"> -->
-                                        <select class="mr-2 form-control">
+                                        <select class="mr-2 form-control" id="search-price-1">
                                             <option value="0">$0</option>
                                             <option value="50">$50</option>
                                             <option value="100">$100</option>
@@ -217,7 +217,7 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
                                     </div>
                                     <div class="form-group text-right col-md-6">
                                         <label>Max</label>
-                                        <select class="mr-2 form-control">
+                                        <select class="mr-2 form-control" id="search-price-2">
                                             <option value="50">$50</option>
                                             <option value="100">$100</option>
                                             <option value="150">$150</option>
@@ -228,7 +228,7 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
                                         </select>
                                     </div>
                                 </div> <!-- form-row.// -->
-                                <button class="btn btn-block btn-primary">Apply</button>
+                                <button class="btn btn-block btn-primary" id="search-price">Apply</button>
                             </div><!-- card-body.// -->
                         </div>
                     </article> <!-- filter-group .// -->
@@ -262,6 +262,7 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
                                             <del class="price-old">$80</del>
                                         </div> <!-- price-wrap.// -->
                                     </div>
+                                    <?php print_r($order_items) ?>
                                     <?php if (in_array($product->id, array_column($order_items, 'product'))) : ?>
                                         <button class="btn btn-block btn-success" onclick="alert('product already add')">Added to cart </button>
                                     <?php else : ?>
@@ -302,6 +303,24 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
                 url: 'search.php',
                 data: {
                     name: $("#search_query").val(),
+                    id: <?php echo $_SESSION['customer_id'] ?>,
+                },
+                success: function(data) {
+                    $('#product_row').html(data);
+
+                }
+            })
+        })
+    })
+    $(document).ready(function() {
+        $('#search-price ').click(function() {
+            $.ajax({
+                type: 'POST',
+                url: 'search-price.php',
+                data: {
+                    first_option: $("#search-price-1").val(),
+                    second_option: $("#search-price-2").val(),
+                    id: <?php echo $_SESSION['customer_id'] ?>,
                 },
                 success: function(data) {
                     $('#product_row').html(data);
