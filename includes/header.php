@@ -45,7 +45,7 @@
     <link href="./public/css/responsive.css" rel="stylesheet" media="only screen and (max-width: 1200px)" />
 
     <!-- custom javascript -->
-    <script src="js/script.js" type="text/javascript"></script>
+    <!-- <script src="js/script.js" type="text/javascript"></script> -->
 
     <script type="text/javascript">
         /// some script

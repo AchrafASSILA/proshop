@@ -22,6 +22,7 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
 <?php $order = new Order() ?>
 <!-- get all order items  -->
 <?php $order_items = json_decode(json_encode($order->getOrderItems()), true) ?>
+
 <header class="section-header">
     <nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
         <div class="container">
@@ -262,7 +263,7 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
                                             <del class="price-old">$80</del>
                                         </div> <!-- price-wrap.// -->
                                     </div>
-                                    <?php print_r($order_items) ?>
+
                                     <?php if (in_array($product->id, array_column($order_items, 'product'))) : ?>
                                         <button class="btn btn-block btn-success" onclick="alert('product already add')">Added to cart </button>
                                     <?php else : ?>
@@ -313,22 +314,21 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
         })
     })
     $(document).ready(function() {
-        $('#search-price ').click(function() {
-            $.ajax({
-                type: 'POST',
-                url: 'search/search-price.php',
-                data: {
-                    first_option: $("#search-price-1").val(),
-                    second_option: $("#search-price-2").val(),
-                    id: <?php echo $_SESSION['customer_id'] ?>,
-                },
-                success: function(data) {
-                    $('#product_row').html(data);
+            $('#search-price ').click(function() {
+                $.ajax({
+                    type: 'POST',
+                    url: 'search/search-price.php',
+                    data: {
+                        first_option: $("#search-price-1").val(),
+                        second_option: $("#search-price-2").val(),
+                        id: <?php echo $_SESSION['customer_id'] ?>,
+                    },
+                    success: function(data) {
+                        $('#product_row').html(data);
 
-                }
+                    }
+                })
             })
-        })
-    })
-</script>
-<!-- ========================= SECTION CONTENT END// ========================= -->
-<?php require_once './includes/footer.php' ?>
+        }) <
+        // /> <!-- === === === === === === === === = SECTION CONTENT END / / === === === === === === === === = -- >
+        <?php require_once './includes/footer.php' ?>

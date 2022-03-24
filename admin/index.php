@@ -10,6 +10,39 @@
     <!-- instanciate from product  -->
     <?php $userObj = new Authentication() ?>
     <?php $orders = $orderObj->getOrdersNeedToDelevredLimit() ?>
+    <style>
+        #div-result {
+            background: #ededed;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        #h {
+            margin-bottom: 15px;
+        }
+    </style>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="h" class="statistics-details  d-flex align-items-center justify-content-between">
+                <!-- <div id="div-result">
+                    <p class="statistics-title">Products</p>
+                    <h3 class="rate-percentage">32</h3>
+                    <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>-0.5%</span></p>
+        </div>
+        <div id="div-result">
+            <p class="statistics-title">Orders</p>
+            <h3 class="rate-percentage">47</h3>
+            <p class="text-success d-flex"><i class="mdi mdi-menu-up"></i><span>+0.1%</span></p>
+        </div>
+        <div id="div-result">
+            <p class="statistics-title">Revenue</p>
+            <h3 class="rate-percentage">$ 4000</h3>
+            <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>68.8</span></p>
+        </div> -->
+            </div>
+        </div>
+    </div>
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
