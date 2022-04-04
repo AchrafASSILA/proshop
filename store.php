@@ -5,8 +5,13 @@
 <!-- get all categories from category view  -->
 <?php $categories = $cat->getCategories(); ?>
 <!-- get products  -->
+<?php
+$paginator = new Paginator('products', 3);
+
+?>
 <?php $prod = new Product();
-$products = $prod->getProducts(null);
+// $products = $prod->getProducts(null);
+$products = $paginator->getObjects();
 ?>
 <!-- displaying products and filtr by category  -->
 <?php
@@ -160,37 +165,7 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
                             </div> <!-- card-body.// -->
                         </div>
                     </article> <!-- filter-group  .// -->
-                    <!-- <article class="filter-group">
-                        <header class="card-header">
-                            <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
-                                <i class="icon-control fa fa-chevron-down"></i>
-                                <h6 class="title">Sizes </h6>
-                            </a>
-                        </header>
-                        <div class="filter-content collapse show" id="collapse_4">
-                            <div class="card-body">
-                                <label class="checkbox-btn">
-                                    <input type="checkbox">
-                                    <span class="btn btn-light"> XS </span>
-                                </label>
 
-                                <label class="checkbox-btn">
-                                    <input type="checkbox">
-                                    <span class="btn btn-light"> SM </span>
-                                </label>
-
-                                <label class="checkbox-btn">
-                                    <input type="checkbox">
-                                    <span class="btn btn-light"> LG </span>
-                                </label>
-
-                                <label class="checkbox-btn">
-                                    <input type="checkbox">
-                                    <span class="btn btn-light"> XXL </span>
-                                </label>
-                            </div> card-body.//
-                        </div>
-                    </article> filter-group .// -->
 
                     <article class="filter-group">
                         <header class="card-header">
@@ -281,12 +256,16 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
 
                 <nav class="mt-4" aria-label="Page navigation sample">
                     <ul class="pagination">
-                        <?php
-                        //  if (isset($_GET['page']) && $_GET['page'] >= 2) 
-                        //         <!-- <li class="page-item"><a class="page-link" href="./store.php?page=<?php echo $_GET['page']-- 
-                        // ">Previous</a></li>
-                        // endif; 
-                        ?>
+
+                        <?php for ($i = 1; $i <= $paginator->pages; $i++) : ?>
+                            <?php if ($paginator->page == $i) : ?>
+
+                                <li class="page-item active"><a class="page-link" href="./store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                            <?php else : ?>
+                                <li class="page-item"><a class="page-link" href="./store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                        <?php  ?>
                     </ul>
                 </nav>
 
@@ -314,21 +293,22 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
         })
     })
     $(document).ready(function() {
-            $('#search-price ').click(function() {
-                $.ajax({
-                    type: 'POST',
-                    url: 'search/search-price.php',
-                    data: {
-                        first_option: $("#search-price-1").val(),
-                        second_option: $("#search-price-2").val(),
-                        id: <?php echo $_SESSION['customer_id'] ?>,
-                    },
-                    success: function(data) {
-                        $('#product_row').html(data);
+        $('#search-price ').click(function() {
+            $.ajax({
+                type: 'POST',
+                url: 'search/search-price.php',
+                data: {
+                    first_option: $("#search-price-1").val(),
+                    second_option: $("#search-price-2").val(),
+                    id: <?php echo $_SESSION['customer_id'] ?>,
+                },
+                success: function(data) {
+                    $('#product_row').html(data);
 
-                    }
-                })
+                }
             })
-        }) <
-        // /> <!-- === === === === === === === === = SECTION CONTENT END / / === === === === === === === === = -- >
+        })
+    })
+</script>
+<!-- === === === === === === === === = SECTION CONTENT END / / === === === === === === === === = -- >
         <?php require_once './includes/footer.php' ?>
