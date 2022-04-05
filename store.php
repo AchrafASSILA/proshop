@@ -265,7 +265,6 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
                                 <li class="page-item"><a class="page-link" href="./store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
                             <?php endif; ?>
                         <?php endfor; ?>
-                        <?php  ?>
                     </ul>
                 </nav>
 

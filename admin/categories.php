@@ -4,10 +4,10 @@
     <?php require_once './autoload.class.php' ?>
 
     <!-- instanciate from category view -->
-    <?php $cat = new Category(); ?>
+    <?php $paginator = new Paginator('categories', 2); ?>
 
     <!-- get all categories  -->
-    <?php $categories  = $cat->getCategories() ?>
+    <?php $categories  = $paginator->getObjects() ?>
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -54,6 +54,17 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <nav class="mt-4" aria-label="Page navigation sample">
+                        <ul class="pagination">
+                            <?php for ($i = 1; $i <= $paginator->pages; $i++) : ?>
+                                <?php if ($paginator->page == $i) : ?>
+                                    <li class="page-item active"><a class="page-link" href="./categories.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                                <?php else : ?>
+                                    <li class="page-item"><a class="page-link" href="./categories.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                                <?php endif; ?>
+                            <?php endfor; ?>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>

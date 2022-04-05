@@ -150,10 +150,10 @@
                             <span class="menu-title">Orders</span>
                             <i class="menu-arrow"></i>
                         </a>
-                        <div class="collapse" id="orders">
+                        <div class="collapse" id="orders" aria-expanded="false" aria-controls="orders">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="./orders.php">Cash On Delivery</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="./orders.php">Delevred Products</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="./delevred-orders.php">Delevred Products</a></li>
 
                             </ul>
                         </div>

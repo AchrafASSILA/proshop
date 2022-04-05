@@ -111,7 +111,6 @@ class Order extends Db
             $statement->execute([$customer_id, $id]);
         }
     }
-
     // get complete orders that need to delevred 
     public function getOrdersNeedToDelevredLimit()
     {
@@ -122,12 +121,31 @@ class Order extends Db
         $orders = $statement->fetchAll(PDO::FETCH_OBJ);
         return $orders;
     }
+    // get complete orders that need to delevred 
+    public function closedOrders()
+    {
+        $orders = '';
+        $sql = 'SELECT  ot.product , ot.quantity , ot.order_id , orders.customer , ot.date_added from orderitems ot  inner join orders on orders.id = ot.order_id where orders.complete = ? and orders.is_delevred = ?  ';
+        $statement = $this->connect()->prepare($sql);
+        $statement->execute([1, 1]);
+        $orders = $statement->fetchAll(PDO::FETCH_OBJ);
+        return $orders;
+    }
     public function getOrdersNeedToDelevred()
     {
         $orders = '';
         $sql = 'SELECT  ot.product , ot.quantity , ot.order_id , orders.customer , ot.date_added from orderitems ot  inner join orders on orders.id = ot.order_id where orders.complete = ? and orders.is_delevred = ?  ';
         $statement = $this->connect()->prepare($sql);
         $statement->execute([1, 0]);
+        $orders = $statement->fetchAll(PDO::FETCH_OBJ);
+        return $orders;
+    }
+    public function updateOrderToDelevred($id)
+    {
+        $orders = '';
+        $sql = 'UPDATE orders set is_delevred = ? , complete = ? where id = ?';
+        $statement = $this->connect()->prepare($sql);
+        $statement->execute([1, 1, $id]);
         $orders = $statement->fetchAll(PDO::FETCH_OBJ);
         return $orders;
     }

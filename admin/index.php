@@ -10,38 +10,127 @@
     <!-- instanciate from product  -->
     <?php $userObj = new Authentication() ?>
     <?php $orders = $orderObj->getOrdersNeedToDelevredLimit() ?>
+    <?php $closedOrders = $orderObj->closedOrders() ?>
+    <?php
+    // $total = 0;
+    // foreach ($closedOrders as $ord) {
+    //     $total += $ord->quantity;
+    // }
+    ?>
     <style>
         #div-result {
             background: #ededed;
             padding: 5px 10px;
             border-radius: 5px;
+            height: 100px;
         }
 
         #h {
             margin-bottom: 15px;
         }
-    </style>
 
+        .res {
+            display: flex;
+
+        }
+
+        .res #div-result {
+            flex: 1;
+            color: white;
+            margin-left: 5px;
+            background-color: #81dada;
+        }
+    </style>
     <div class="row">
         <div class="col-sm-12">
-            <div id="h" class="statistics-details  d-flex align-items-center justify-content-between">
-                <!-- <div id="div-result">
+            <div id="h" class="res">
+                <div id="div-result">
                     <p class="statistics-title">Products</p>
-                    <h3 class="rate-percentage">32</h3>
-                    <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>-0.5%</span></p>
-        </div>
-        <div id="div-result">
-            <p class="statistics-title">Orders</p>
-            <h3 class="rate-percentage">47</h3>
-            <p class="text-success d-flex"><i class="mdi mdi-menu-up"></i><span>+0.1%</span></p>
-        </div>
-        <div id="div-result">
-            <p class="statistics-title">Revenue</p>
-            <h3 class="rate-percentage">$ 4000</h3>
-            <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>68.8</span></p>
-        </div> -->
+                    <h3 class="rate-percentage"><?php echo count($productObj->getProducts(null)) ?></h3>
+                </div>
+                <div id="div-result">
+                    <p class="statistics-title">Orders</p>
+                    <h3 class="rate-percentage"><?php echo count($orderObj->closedOrders()) ?></h3>
+                </div>
+                <div id="div-result">
+                    <p class="statistics-title">Revenue</p>
+                    <h3 class="rate-percentage">4000.00 $</h3>
+                </div>
             </div>
         </div>
+        <div class="col-lg-8 d-flex flex-column">
+            <div class="row flex-grow">
+                <div class="col-12 col-lg-4 col-lg-12 grid-margin stretch-card">
+                    <div class="card card-rounded">
+                        <div class="card-body">
+                            <div class="d-sm-flex justify-content-between align-items-start">
+                                <div>
+                                    <h4 class="card-title card-title-dash">Performance Line Chart</h4>
+                                    <h5 class="card-subtitle card-subtitle-dash">Lorem Ipsum is simply dummy text of the printing</h5>
+                                </div>
+                                <div id="performance-line-legend"></div>
+                            </div>
+                            <div class="chartjs-wrapper mt-5">
+                                <canvas id="performaneLine"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 d-flex flex-column">
+            <div class="row flex-grow">
+                <div class="col-md-6 col-lg-12 grid-margin stretch-card">
+                    <div class="card bg-primary card-rounded">
+                        <div class="card-body pb-0">
+                            <h4 class="card-title card-title-dash text-white mb-4">Status Summary</h4>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <p class="status-summary-ight-white mb-1">Closed Value</p>
+                                    <h2 class="text-info">357</h2>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="status-summary-chart-wrapper pb-4">
+                                        <canvas id="status-summary"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-12 grid-margin stretch-card">
+                    <div class="card card-rounded">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="d-flex justify-content-between align-items-center mb-2 mb-sm-0">
+                                        <div class="circle-progress-width">
+                                            <div id="totalVisitors" class="progressbar-js-circle pr-2"></div>
+                                        </div>
+                                        <div>
+                                            <p class="text-small mb-2">Total Visitors</p>
+                                            <h4 class="mb-0 fw-bold">26.80%</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="circle-progress-width">
+                                            <div id="visitperday" class="progressbar-js-circle pr-2"></div>
+                                        </div>
+                                        <div>
+                                            <p class="text-small mb-2">Visits per day</p>
+                                            <h4 class="mb-0 fw-bold">9065</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">

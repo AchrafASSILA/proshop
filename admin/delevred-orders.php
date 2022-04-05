@@ -9,7 +9,7 @@
     <?php $productObj = new Product() ?>
     <!-- instanciate from product  -->
     <?php $userObj = new Authentication() ?>
-    <?php $orders = $orderObj->getOrdersNeedToDelevred() ?>
+    <?php $orders = $orderObj->closedOrders() ?>
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -21,9 +21,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>
-                                    Shipped
-                                </th>
+
                                 <th>
                                     Product
                                 </th>
@@ -58,10 +56,6 @@
                                     <?php $customer = $userObj->getSingleCustomer($order->customer) ?>
                                     <?php $shipping = $adresse->getShippingAdress($order->customer) ?>
                                     <tr>
-                                        <td>
-                                            <input type="checkbox" class="form-check-input" id="shipped" name="products[]" value="<?= $order->order_id  ?>">
-
-                                        </td>
                                         <td class="py-1">
                                             <img src="<?php echo  '..\\' . $product->image ?>" alt="image" />
                                         </td>

@@ -53,9 +53,11 @@ if (isset($_POST['increment'])) {
     }
     // header('Location: /proshop/cart.php');
 } elseif (isset($_POST['UpdateShipped'])) {
-    echo '<pre>';
-    print_r($_POST);
-    echo '</pre>';
+    $order = new Order();
+    foreach ($_POST['products'] as $id) {
+        $order->updateOrderToDelevred($id);
+    }
+    header('Location: /proshop/admin/');
 } else {
     header('Location: /proshop/cart.php');
 }

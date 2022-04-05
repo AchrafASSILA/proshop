@@ -3,8 +3,8 @@
     <?php require_once './includes/header.php' ?>
     <?php require_once './autoload.class.php' ?>
     <!-- get products  -->
-    <?php $prod = new Product() ?>
-    <?php $products = $prod->getProducts(null) ?>
+    <?php $paginator = new Paginator('products', 4) ?>
+    <?php $products = $paginator->getObjects() ?>
     <!-- instanciate from category view -->
     <?php $cat = new Category(); ?>
     <div class="col-lg-12 grid-margin stretch-card">
@@ -78,6 +78,17 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <nav class="mt-4" aria-label="Page navigation sample">
+                        <ul class="pagination">
+                            <?php for ($i = 1; $i <= $paginator->pages; $i++) : ?>
+                                <?php if ($paginator->page == $i) : ?>
+                                    <li class="page-item active"><a class="page-link" href="./products.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                                <?php else : ?>
+                                    <li class="page-item"><a class="page-link" href="./products.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                                <?php endif; ?>
+                            <?php endfor; ?>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
