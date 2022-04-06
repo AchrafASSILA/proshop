@@ -27,7 +27,7 @@ class Order extends Db
             $customer = filter_var($_SESSION['customer_id']);
             $sql = "INSERT INTO orders(customer,date_ordered) VALUES(?,?)";
             $statement = $this->connect()->prepare($sql);
-            $statement->execute([$customer, 'y/d/m']);
+            $statement->execute([$customer, date('y/m/d')]);
         }
     }
 
@@ -82,7 +82,7 @@ class Order extends Db
     {
         $sql = 'INSERT INTO orderitems(product,order_id,quantity,date_added) VALUES(?,?,?,?)';
         $statement = $this->connect()->prepare($sql);
-        $statement->execute([$current_product, $order->id, 1, 'y/m/d']);
+        $statement->execute([$current_product, $order->id, 1, date('y/m/d')]);
     }
 
     // get complete and delevred and payed orders 

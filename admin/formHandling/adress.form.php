@@ -38,7 +38,7 @@ if (isset($_POST['createAdress'])) {
     }
     $orderObj = new Order();
     $order = $orderObj->getOrder();
-    $shippingObj->updateShippingAdress($adress,  $city, $state, $zipcode, $order->id);
+    $shippingObj->updateShippingAdress($adress, $city, $state, $zipcode, $order->id);
     header('Location: /proshop/adress.php');
 } else {
     header('Location: /proshop/cart.php');

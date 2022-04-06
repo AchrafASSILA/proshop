@@ -4,7 +4,7 @@
     <?php require_once './autoload.class.php' ?>
     <!-- partial -->
     <?php $orderObj = new Order() ?>
-    <!-- get non delevred orders  -->
+
     <!-- instanciate from customer  -->
     <?php $productObj = new Product() ?>
     <!-- instanciate from product  -->

@@ -57,7 +57,7 @@ if (isset($_POST['increment'])) {
     foreach ($_POST['products'] as $id) {
         $order->updateOrderToDelevred($id);
     }
-    header('Location: /proshop/admin/');
+    header('Location: /proshop/admin/delevred-orders.php');
 } else {
     header('Location: /proshop/cart.php');
 }

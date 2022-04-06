@@ -4,7 +4,8 @@
     <?php require_once './autoload.class.php' ?>
     <!-- partial -->
     <?php $orderObj = new Order() ?>
-    <!-- get non delevred orders  -->
+    <!-- create total revenue session  -->
+    <?php $_SESSION['revenue'] = 0 ?>
     <!-- instanciate from customer  -->
     <?php $productObj = new Product() ?>
     <!-- instanciate from product  -->
@@ -75,7 +76,9 @@
                                             <?= $customer->first_name . " " . $customer->last_name ?>
                                         </td>
                                         <td>
-                                            <?= $product->price * $order->quantity ?>
+                                            <?= $product->price * $order->quantity ?> $
+                                            <?php $_SESSION['revenue'] += $product->price * $order->quantity ?>
+
                                         </td>
                                         <td>
                                             <?php if ($shipping) : ?>

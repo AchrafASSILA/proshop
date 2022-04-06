@@ -49,12 +49,12 @@
                     <h3 class="rate-percentage"><?php echo count($productObj->getProducts(null)) ?></h3>
                 </div>
                 <div id="div-result">
-                    <p class="statistics-title">Orders</p>
+                    <p class="statistics-title">Close Orders</p>
                     <h3 class="rate-percentage"><?php echo count($orderObj->closedOrders()) ?></h3>
                 </div>
                 <div id="div-result">
                     <p class="statistics-title">Revenue</p>
-                    <h3 class="rate-percentage">4000.00 $</h3>
+                    <h3 class="rate-percentage"><?= $_SESSION['revenue'] ?> $</h3>
                 </div>
             </div>
         </div>
@@ -83,11 +83,11 @@
                 <div class="col-md-6 col-lg-12 grid-margin stretch-card">
                     <div class="card bg-primary card-rounded">
                         <div class="card-body pb-0">
-                            <h4 class="card-title card-title-dash text-white mb-4">Status Summary</h4>
+                            <h4 class="card-title card-title-dash text-white mb-4">New Orders</h4>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <p class="status-summary-ight-white mb-1">Closed Value</p>
-                                    <h2 class="text-info">357</h2>
+                                    <!-- <p class="status-summary-ight-white mb-1">Closed Value</p> -->
+                                    <h2 class="text-info" style="color: white !important">6 </h2>
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="status-summary-chart-wrapper pb-4">

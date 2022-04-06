@@ -129,7 +129,7 @@
                                     <span style="color: red;font-weight:bold;text-align:center;display:block;"><?= $_GET['error'] ?></span>
                                 <?php } ?>
                                 <div class="form-group">
-                                    <button type="submit" name="upda    teAdress" class="btn btn-primary btn-block"> Update </button>
+                                    <button type="submit" name="updateAdress" class="btn btn-primary btn-block"> Update </button>
                                 </div> <!-- form-group// -->
                             </form>
                         </div> <!-- card-body.// -->
