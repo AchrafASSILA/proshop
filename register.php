@@ -23,6 +23,10 @@
                         </div> <!-- form-group end.// -->
                     </div> <!-- form-row end.// -->
                     <div class="form-group">
+                        <label>Tel</label>
+                        <input type="text" name="tel" class="form-control" placeholder="">
+                    </div> <!-- form-group end.// -->
+                    <div class="form-group">
                         <label>Username</label>
                         <input type="text" name="username" class="form-control" placeholder="">
                     </div> <!-- form-group end.// -->

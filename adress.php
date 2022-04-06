@@ -3,9 +3,10 @@
     <?php require './autoload.classes.php'; ?>
     <!-- instanciate order  -->
     <?php $order = new Order() ?>
-    <!-- instanciate user  -->
-    <?php $userObj = new User() ?>
-    <?php $user = $userObj->getUser() ?>
+    <!-- get shipping  -->
+    <?php $shippingObj = new Shipping() ?>
+    <?php $adressShip = $shippingObj->getShippingAdress(null) ?>
+
     <!-- get all order items  -->
     <?php $order_items = json_decode(json_encode($order->getOrderItems()), true) ?>
     <header class="section-header">
@@ -99,21 +100,28 @@
                     <!--   SIDEBAR .//END   -->
                 </aside>
                 <main class="col-md-9">
+
                     <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">Account info</h4>
-                            <form method="post" action="./admin/formHandling/user.form.php">
+                            <h4 class="card-title mb-4">Delivery info</h4>
+                            <form method="post" action="./admin/formHandling/adress.form.php">
                                 <div class="form-group">
-                                    <input type="text" name="first_name" value="<?= $user[0]->first_name ?>" class="form-control" placeholder="first name">
+                                    <input type="text" name="adress" value="<?= $adressShip[0]->adress ?>" class="form-control" placeholder="adress">
                                 </div> <!-- form-group// -->
 
                                 <div class="form-group">
-                                    <input type="text" name="last_name" value="<?= $user[0]->last_name ?>" class="form-control" placeholder="last name">
+                                    <input type="text" name="city" value="<?= $adressShip[0]->city ?>" class="form-control" placeholder="city">
                                 </div> <!-- form-group// -->
 
                                 <div class="form-group">
-                                    <input type="text" name="tel" value="<?= $user[0]->tel ?>" class="form-control" placeholder="tel">
+                                    <input type="text" name="state" value="<?= $adressShip[0]->state ?>" class="form-control" placeholder="state">
                                 </div> <!-- form-group// -->
+
+                                <div class="form-group">
+                                    <input type="text" name="zipcode" value="<?= $adressShip[0]->zip_code ?>" class="form-control" placeholder="zipcode">
+                                </div> <!-- form-group// -->
+
+
                                 <div class="form-group">
 
                                 </div> <!-- form-group form-check .// -->
@@ -121,7 +129,7 @@
                                     <span style="color: red;font-weight:bold;text-align:center;display:block;"><?= $_GET['error'] ?></span>
                                 <?php } ?>
                                 <div class="form-group">
-                                    <button type="submit" name="editAccount" class="btn btn-primary btn-block"> Update </button>
+                                    <button type="submit" name="upda    teAdress" class="btn btn-primary btn-block"> Update </button>
                                 </div> <!-- form-group// -->
                             </form>
                         </div> <!-- card-body.// -->

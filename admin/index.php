@@ -165,6 +165,9 @@
                                     Adresse
                                 </th>
                                 <th>
+                                    Tel
+                                </th>
+                                <th>
                                     Date Added
                                 </th>
                             </tr>
@@ -201,6 +204,9 @@
                                         <?php else : ?>
                                             don't have
                                         <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?= $customer->tel ?>
                                     </td>
                                     <td>
                                         <?= $order->date_added ?>

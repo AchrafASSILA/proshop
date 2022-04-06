@@ -5,16 +5,17 @@ require_once '../../classes/Authentication.class.php';
 
 if (isset($_POST['register'])) {
     // get data 
-    $first_name = filter_var($_POST['first_name'], FILTER_SANITIZE_STRING);
-    $last_name = filter_var($_POST['last_name'], FILTER_SANITIZE_STRING);
-    $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
-    $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-    $password2 = filter_var($_POST['password2'], FILTER_SANITIZE_STRING);
-
+    $first_name = filter_var($_POST['first_name']);
+    $last_name = filter_var($_POST['last_name']);
+    $tel = filter_var($_POST['tel']);
+    $username = filter_var($_POST['username']);
+    $password = filter_var($_POST['password']);
+    $password2 = filter_var($_POST['password2']);
+    // print_r($_POST);
     // intanciated from form validation 
     $validationObject = new FormValidation();
     // run error handlings 
-    if ($validationObject->emptyInputs(array($first_name, $last_name, $username, $password, $password2))) {
+    if ($validationObject->emptyInputs(array($first_name, $last_name, $username, $password, $password2, $tel))) {
         header('Location: /proshop/register.php?error=fill out all inputs');
         exit();
     }
@@ -35,15 +36,15 @@ if (isset($_POST['register'])) {
     }
 
     // insert customer in data base if there is no errors 
-    $obj->createCustomer($first_name, $last_name, $username, $password);
+    $obj->createCustomer($first_name, $last_name, $username, $password, $tel);
     // create customer session for login 
     $customer = $obj->getCustomer($username);
     $obj->createCustomerSession($customer);
     header('Location: /proshop/store.php');
 } elseif (isset($_POST['login'])) {
     //get date 
-    $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
-    $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+    $username = filter_var($_POST['username']);
+    $password = filter_var($_POST['password']);
     // intanciated from form validation 
     $validationObject = new FormValidation();
     // run error handlings 

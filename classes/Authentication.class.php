@@ -32,21 +32,22 @@ class Authentication extends Db
     }
 
     // create customer 
-    public function createCustomer($first_name, $last_name, $username, $password)
+    public function createCustomer($first_name, $last_name, $username, $password, $tel)
     {
         // hashing password 
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         // created at 
         $created_at = date('y/m/d');
 
-        $sql = 'INSERT INTO customers(first_name,last_name,username,password,created_at) VALUES(?,?,?,?,?)';
+        $sql = 'INSERT INTO customers(first_name,last_name,username,password,created_at,tel) VALUES(?,?,?,?,?,?)';
         $statement = $this->connect()->prepare($sql);
         $statement->execute([
             $first_name,
             $last_name,
             $username,
             $hashed_password,
-            $created_at
+            $created_at,
+            $tel
         ]);
     }
 

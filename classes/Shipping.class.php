@@ -34,4 +34,12 @@ class Shipping extends Db
         $statement = $this->connect()->prepare($sql);
         $statement->execute([$customer_id, $order, $adress, $city, $state, $zipcode]);
     }
+    //create shipping adress if not exists
+    public function updateShippingAdress($adress, $city, $state, $zipcode, $order)
+    {
+        $customer_id = $_SESSION['customer_id'];
+        $sql = 'UPDATE shippingadress SET adress = ?, city = ? , state = ? , zip_code = ? WHERE  customer = ?';
+        $statement = $this->connect()->prepare($sql);
+        $statement->execute([$adress, $city, $state, $zipcode, $customer_id]);
+    }
 }
