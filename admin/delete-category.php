@@ -8,17 +8,14 @@
 
     // instanciated 
     $obj = new Category();
-
-    // get product 
-    $category = $obj->getCategoryById($id);
-
     // check if the product in db 
-    if ($category) {
+    if ($id) {
         $obj->deleteCategory($id);
         header('Location: ./categories.php');
     } else {
         header('Location: ./categories.php');
-    } ?>
+    }
+    ?>
 <?php else :
     header('Location: ./login.php');
 endif; ?>

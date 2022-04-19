@@ -12,10 +12,12 @@
     <?php $orders = $orderObj->getOrdersNeedToDelevredLimit() ?>
     <?php $closedOrders = $orderObj->closedOrders() ?>
     <?php
-    // $total = 0;
-    // foreach ($closedOrders as $ord) {
-    //     $total += $ord->quantity;
-    // }
+    $total = 0;
+    foreach ($closedOrders as $ord) {
+        $product = $productObj->getSingleProduct($ord->product);
+        $total += $product->price * $ord->quantity;
+    }
+
     ?>
     <style>
         #div-result {
@@ -54,7 +56,7 @@
                 </div>
                 <div id="div-result">
                     <p class="statistics-title">Revenue</p>
-                    <h3 class="rate-percentage"><?= $_SESSION['revenue'] ?> $</h3>
+                    <h3 class="rate-percentage"><?= $total ?> $</h3>
                 </div>
             </div>
         </div>

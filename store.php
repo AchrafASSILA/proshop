@@ -216,7 +216,7 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
 
                 <header class="border-bottom mb-4 pb-3">
                     <div class="form-inline">
-                        <span class="mr-md-auto" id="count"><?php echo count($products) ?> Items found </span>
+                        <span class="mr-md-auto" id="count"><?php echo count($prod->getProducts(null)) ?> Items found </span>
 
                     </div>
                 </header><!-- sect-heading -->

@@ -145,49 +145,7 @@ if ($product) {
                                 <var class="price h4">$<?php echo $product->price ?></var>
                             </div>
 
-                            <p><?= $product->description ?></p>
-
-
-                            <hr>
-                            <div class="row">
-                                <div class="item-option-select">
-                                    <h6>Choose Color</h6>
-                                    <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                                        <label class="btn btn-light">
-                                            <input type="radio" name="radio_color"> Silver
-                                        </label>
-                                        <label class="btn btn-light">
-                                            <input type="radio" name="radio_color"> Gray
-                                        </label>
-                                        <label class="btn btn-light active">
-                                            <input type="radio" name="radio_color checked"> Gold
-                                        </label>
-                                        <label class="btn btn-light">
-                                            <input type="radio" name="radio_color"> Black
-                                        </label>
-                                    </div>
-                                </div>
-                            </div> <!-- row.// -->
-                            <div class="row">
-                                <div class="item-option-select">
-                                    <h6>Select Size</h6>
-                                    <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                                        <label class="btn btn-light">
-                                            <input type="radio" name="radio_color"> S
-                                        </label>
-                                        <label class="btn btn-light active">
-                                            <input type="radio" name="radio_color" checked> M
-                                        </label>
-                                        <label class="btn btn-light">
-                                            <input type="radio" name="radio_color"> L
-                                        </label>
-                                        <label class="btn btn-light">
-                                            <input type="radio" name="radio_color"> XL
-                                        </label>
-                                    </div>
-                                </div>
-                            </div> <!-- row.// -->
-                            <hr><?php if (in_array($product->id, array_column($order_items, 'product'))) : ?>
+                            <p><?= $product->description ?></p><?php if (in_array($product->id, array_column($order_items, 'product'))) : ?>
                                 <button class="btn  btn-success" onclick="alert('product already add')">Added to cart </button>
                             <?php else : ?>
                                 <form action="./admin/formHandling/order-form.php" method="post">
@@ -206,10 +164,10 @@ if ($product) {
             <div class="row">
                 <div class="col-md-9">
 
-                    <header class="section-heading">
+                    <!-- <header class="section-heading">
                         <h3>Customer Reviews </h3>
 
-                    </header>
+                    </header> -->
 
                     <!-- <article class="box mb-3">
                         <div class="icontext w-100">
