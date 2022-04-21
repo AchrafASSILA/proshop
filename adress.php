@@ -105,22 +105,39 @@
                         <div class="card-body">
                             <h4 class="card-title mb-4">Delivery info</h4>
                             <form method="post" action="./admin/formHandling/adress.form.php">
-                                <div class="form-group">
-                                    <input type="text" name="adress" value="<?= $adressShip[0]->adress ?>" class="form-control" placeholder="adress">
-                                </div> <!-- form-group// -->
+                                <?php if ($adressShip) : ?>
+                                    <div class="form-group">
+                                        <input type="text" name="adress" value="<?= $adressShip[0]->adress  ?>" class="form-control" placeholder="adress">
+                                    </div> <!-- form-group// -->
 
-                                <div class="form-group">
-                                    <input type="text" name="city" value="<?= $adressShip[0]->city ?>" class="form-control" placeholder="city">
-                                </div> <!-- form-group// -->
+                                    <div class="form-group">
+                                        <input type="text" name="city" value="<?= $adressShip[0]->city ?>" class="form-control" placeholder="city">
+                                    </div> <!-- form-group// -->
 
-                                <div class="form-group">
-                                    <input type="text" name="state" value="<?= $adressShip[0]->state ?>" class="form-control" placeholder="state">
-                                </div> <!-- form-group// -->
+                                    <div class="form-group">
+                                        <input type="text" name="state" value="<?= $adressShip[0]->state ?>" class="form-control" placeholder="state">
+                                    </div> <!-- form-group// -->
 
-                                <div class="form-group">
-                                    <input type="text" name="zipcode" value="<?= $adressShip[0]->zip_code ?>" class="form-control" placeholder="zipcode">
-                                </div> <!-- form-group// -->
+                                    <div class="form-group">
+                                        <input type="text" name="zipcode" value="<?= $adressShip[0]->zip_code ?>" class="form-control" placeholder="zipcode">
+                                    </div> <!-- form-group// -->
+                                <?php else : ?>
+                                    <div class="form-group">
+                                        <input type="text" name="adress" class="form-control" placeholder="adress">
+                                    </div> <!-- form-group// -->
 
+                                    <div class="form-group">
+                                        <input type="text" name="city" class="form-control" placeholder="city">
+                                    </div> <!-- form-group// -->
+
+                                    <div class="form-group">
+                                        <input type="text" name="state" class="form-control" placeholder="state">
+                                    </div> <!-- form-group// -->
+
+                                    <div class="form-group">
+                                        <input type="text" name="zipcode" class="form-control" placeholder="zipcode">
+                                    </div> <!-- form-group// -->
+                                <?php endif; ?>
 
                                 <div class="form-group">
 
@@ -129,7 +146,11 @@
                                     <span style="color: red;font-weight:bold;text-align:center;display:block;"><?= $_GET['error'] ?></span>
                                 <?php } ?>
                                 <div class="form-group">
-                                    <button type="submit" name="updateAdress" class="btn btn-primary btn-block"> Update </button>
+                                    <?php if ($adressShip) : ?>
+                                        <button type="submit" name="updateAdress" class="btn btn-primary btn-block"> Update </button>
+                                    <?php else : ?>
+                                        <button type="submit" name="createAdress" class="btn btn-primary btn-block"> Create </button>
+                                    <?php endif; ?>
                                 </div> <!-- form-group// -->
                             </form>
                         </div> <!-- card-body.// -->

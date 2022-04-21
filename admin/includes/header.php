@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="./public/css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="./public/images/favicon.png" />
+
+
 </head>
 
 <body>
@@ -158,24 +160,18 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="./chart.php" aria-expanded="false" aria-controls="charts">
                             <i class="menu-icon mdi mdi-chart-line"></i>
                             <span class="menu-title">Charts</span>
-                            <i class="menu-arrow"></i>
                         </a>
-                        <div class="collapse" id="charts">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">Month Orders</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">Year Orders</a></li>
-                            </ul>
-                        </div>
-                    </li>
+
+                    </li> -->
 
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                             <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                            <span class="menu-title">User Pages</span>
+                            <span class="menu-title">User </span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="auth">

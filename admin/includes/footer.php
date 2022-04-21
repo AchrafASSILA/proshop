@@ -1,8 +1,34 @@
     <!-- plugins:js -->
+    <script>
+        const labels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./public/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
-    <script src="./public/vendors/chart.js/Chart.min.js"></script>
     <script src="./public/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
     <script src="./public/vendors/progressbar.js/progressbar.min.js"></script>
 
@@ -17,7 +43,7 @@
     <!-- Custom js for this page-->
     <script src="./public/js/jquery.cookie.js" type="text/javascript"></script>
     <script src="./public/js/dashboard.js"></script>
-    <script src="./public/js/Chart.roundedBarCharts.js"></script>
+
     <!-- End custom js for this page-->
     </body>
 

@@ -52,53 +52,51 @@
                                 </th>
                             </tr>
                         </thead>
-                        <form action="./formHandling/order-form.php" method="post">
-                            <tbody>
-                                <?php $adresse = new Shipping() ?>
-                                <?php foreach ($orders as $order) : ?>
-                                    <?php $product = $productObj->getSingleProduct($order->product) ?>
-                                    <?php $customer = $userObj->getSingleCustomer($order->customer) ?>
-                                    <?php $shipping = $adresse->getShippingAdress($order->customer) ?>
-                                    <tr>
-                                        <td class="py-1">
-                                            <img src="<?php echo  '..\\' . $product->image ?>" alt="image" />
-                                        </td>
-                                        <td>
-                                            <?= $product->name ?>
-                                        </td>
-                                        <td>
-                                            $<?= $product->price ?>
-                                        </td>
-                                        <td>
-                                            <?= $order->quantity ?>
-                                        </td>
-                                        <td>
-                                            <?= $customer->first_name . " " . $customer->last_name ?>
-                                        </td>
-                                        <td>
-                                            <?= $product->price * $order->quantity ?> $
-                                            <?php $_SESSION['revenue'] += $product->price * $order->quantity ?>
+                        <tbody>
+                            <?php $adresse = new Shipping() ?>
+                            <?php foreach ($orders as $order) : ?>
+                                <?php $product = $productObj->getSingleProduct($order->product) ?>
+                                <?php $customer = $userObj->getSingleCustomer($order->customer) ?>
+                                <?php $shipping = $adresse->getShippingAdress($order->customer) ?>
+                                <tr>
+                                    <td class="py-1">
+                                        <img src="<?php echo  '..\\' . $product->image ?>" alt="image" />
+                                    </td>
+                                    <td>
+                                        <?= $product->name ?>
+                                    </td>
+                                    <td>
+                                        $<?= $product->price ?>
+                                    </td>
+                                    <td>
+                                        <?= $order->quantity ?>
+                                    </td>
+                                    <td>
+                                        <?= $customer->first_name . " " . $customer->last_name ?>
+                                    </td>
+                                    <td>
+                                        <?= $product->price * $order->quantity ?> $
+                                        <?php $_SESSION['revenue'] += $product->price * $order->quantity ?>
 
-                                        </td>
-                                        <td>
-                                            <?php if ($shipping) : ?>
-                                                <?= $shipping[0]->adress  . " " . $shipping[0]->city  . " " . $shipping[0]->zip_code ?>
-                                            <?php else : ?>
-                                                don't have
-                                            <?php endif; ?>
-                                        </td>
-                                        <td>
-                                            <?= $customer->tel ?>
-                                        </td>
-                                        <td>
-                                            <?= $order->date_added ?>
-                                        </td>
-                                    </tr>
+                                    </td>
+                                    <td>
+                                        <?php if ($shipping) : ?>
+                                            <?= $shipping[0]->adress  . " " . $shipping[0]->city  . " " . $shipping[0]->zip_code ?>
+                                        <?php else : ?>
+                                            don't have
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?= $customer->tel ?>
+                                    </td>
+                                    <td>
+                                        <?= $order->date_added ?>
+                                    </td>
+                                </tr>
 
-                            </tbody>
-                        <?php endforeach; ?>
-                        <button type="submit" name="UpdateShipped" class="btn btn-primary btn-block "> Update </button>
-                        </form>
+                        </tbody>
+                    <?php endforeach; ?>
+
                     </table>
                 </div>
             </div>
